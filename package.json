@@ -2,9 +2,7 @@
   "name": "patanawan-3d-portfolio-streetwall",
   "version": "2.0.0",
   "description": "Production 3D Artist Portfolio for Patanawan Jarunongkran (Ball Patanawan) in Graffiti Street Wall style with verified asset organizer.",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
     "dev": "node server.js",
     "organize": "node scripts/organize-assets.js",
     "check": "node --check server.js && node --check scripts/organize-assets.js && node --check js/streetfx.js && node --check js/app.js"
