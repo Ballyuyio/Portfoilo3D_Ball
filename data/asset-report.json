@@ -1,0 +1,161 @@
+{
+  "generatedAt": "2026-11-10T19:25:30.198Z",
+  "artist": "Patanawan Jarunongkran (Ball Patanawan)",
+  "concept": "STREET WALL",
+  "sourceSafety": "Read-only copy performed. Zero files modified/deleted inside WorkingModelmage/.",
+  "counts": {
+    "projects": 30,
+    "renders": 140,
+    "workflow": 54,
+    "beforeAfterSliders": 19,
+    "animations": 26,
+    "motionGroups": 5,
+    "unsortedItems": 18,
+    "skippedDuplicateFiles": 3,
+    "skippedFrameDumpPngs": 1680
+  },
+  "skippedDuplicates": [
+    {
+      "srcRel": "67120501057_pers.png",
+      "reason": "Exact MD5 byte duplicate of pers.png (397,576 B)"
+    },
+    {
+      "srcRel": "workflowimage/Chibi_bluelock.-1.gif",
+      "reason": "Exact MD5 byte duplicate of Chibi_bluelock.0.gif (539,678 B)"
+    },
+    {
+      "srcRel": "workflowimage/Versy650.1.jpg",
+      "reason": "Exact MD5 byte duplicate of Versy650.0.jpg (668,206 B)"
+    },
+    {
+      "srcRel": "labroom_vedio/AungChibi/*.png (300 PNG frames)",
+      "reason": "Raw per-frame render sequence already assembled into .mp4 video"
+    },
+    {
+      "srcRel": "labroom_vedio/FinalAnima/*.png (731 PNG frames)",
+      "reason": "Raw per-frame render sequence already assembled into .mp4 video"
+    },
+    {
+      "srcRel": "labroom_vedio/FinalAnima/New folder/*.png (144 PNG frames)",
+      "reason": "Raw per-frame render sequence already assembled into .mp4 video"
+    },
+    {
+      "srcRel": "labroom_vedio/LED_BULB/*.png (205 PNG frames)",
+      "reason": "Raw per-frame render sequence already assembled into .mp4 video"
+    },
+    {
+      "srcRel": "labroom_vedio/Submarine/*.png (300 PNG frames)",
+      "reason": "Raw per-frame render sequence already assembled into .mp4 video"
+    }
+  ],
+  "unsorted": [
+    {
+      "originalFile": "labroom_vedio/ArmSwing.avi",
+      "sizeMB": 355.96,
+      "status": "needs-transcode-avi",
+      "note": "356.0 MB .avi Maya arm pendulum arc exercise. Needs ffmpeg H.264 transcode."
+    },
+    {
+      "originalFile": "labroom_vedio/AungChibi/Brand_Anima_1.[0001-0300].mp4",
+      "sizeMB": 11.57,
+      "status": "unsorted-wip-pass",
+      "note": "Earlier 720p grey-stage pass superseded by 1080p orange studio Brand_Anima_1.[0001-0300]_2.mp4."
+    },
+    {
+      "originalFile": "labroom_vedio/AungChibi/Brand_Anima_1.[0001-0300]_1.mp4",
+      "sizeMB": 11.6,
+      "status": "unsorted-wip-pass",
+      "note": "Earlier 1080p grey-stage pass superseded by orange studio Brand_Anima_1.[0001-0300]_2.mp4."
+    },
+    {
+      "originalFile": "labroom_vedio/BallMovementAnima.avi",
+      "sizeMB": 194.48,
+      "status": "needs-transcode-avi",
+      "note": "194.5 MB .avi Maya ball weight & bounce study 01 (25,096 tris). Needs ffmpeg H.264 transcode."
+    },
+    {
+      "originalFile": "labroom_vedio/BallMovementAnima2.avi",
+      "sizeMB": 182.72,
+      "status": "needs-transcode-avi",
+      "note": "182.7 MB .avi Maya ball bowling/soccer weight study 02. Needs ffmpeg H.264 transcode."
+    },
+    {
+      "originalFile": "labroom_vedio/Body3Idle.avi",
+      "sizeMB": 186.26,
+      "status": "needs-transcode-avi",
+      "note": "186.3 MB .avi stitched blue/white plush idle study (2,396 tris). Needs ffmpeg H.264 transcode."
+    },
+    {
+      "originalFile": "labroom_vedio/FinalAnima/Gracia.avi",
+      "sizeMB": 3268.88,
+      "status": "needs-transcode-avi",
+      "note": "3,268.9 MB raw .avi boxing rig test (2 stylized boxers). Needs ffmpeg H.264 transcode to showcase."
+    },
+    {
+      "originalFile": "labroom_vedio/FinalAnima/Playbash.avi",
+      "sizeMB": 4096,
+      "status": "needs-transcode-avi",
+      "note": "4,096.0 MB raw .avi playblast test (no preview frame decoded by OS). Needs ffmpeg H.264 transcode."
+    },
+    {
+      "originalFile": "labroom_vedio/FurryAttck.avi",
+      "sizeMB": 129.53,
+      "status": "needs-transcode-avi",
+      "note": "129.5 MB legacy .avi (playable H.264 Attck.mp4 already included under furry-guardian)."
+    },
+    {
+      "originalFile": "labroom_vedio/FurryIdle.avi",
+      "sizeMB": 154.92,
+      "status": "needs-transcode-avi",
+      "note": "154.9 MB legacy .avi (playable H.264 Idle.mp4 already included under furry-guardian)."
+    },
+    {
+      "originalFile": "labroom_vedio/FurryIWalk.avi",
+      "sizeMB": 256.51,
+      "status": "needs-transcode-avi",
+      "note": "256.5 MB legacy .avi (playable H.264 walk.mp4 already included under furry-guardian)."
+    },
+    {
+      "originalFile": "labroom_vedio/Moshi_WalkAnima.avi",
+      "sizeMB": 266.97,
+      "status": "needs-transcode-avi",
+      "note": "267.0 MB .avi stitched blue/white plush walk cycle (same character as Body3Idle). Needs ffmpeg H.264 transcode."
+    },
+    {
+      "originalFile": "labroom_vedio/PendulumAnima.avi",
+      "sizeMB": 302.57,
+      "status": "needs-transcode-avi",
+      "note": "302.6 MB .avi Maya dual pendulum overlap exercise. Needs ffmpeg H.264 transcode."
+    },
+    {
+      "originalFile": "labroom_vedio/PendulumAnima.zip",
+      "sizeMB": 2.39,
+      "status": "non-media-archive",
+      "note": "2.39 MB .zip Maya scene archive (not an image or video)."
+    },
+    {
+      "originalFile": "labroom_vedio/Recording 2026-07-04 015623.mp4",
+      "sizeMB": 1860.89,
+      "status": "unsorted-oversized",
+      "note": "1,860.89 MB raw 51-minute desktop screen recording (1918x930). Too large for web auto-load; trim to a highlights speed-sculpt if needed."
+    },
+    {
+      "originalFile": "labroom_vedio/Submarine.avi",
+      "sizeMB": 1779.79,
+      "status": "needs-transcode-avi",
+      "note": "1,779.8 MB legacy .avi wireframe turntable (playable .mp4 versions already included under graffiti-submarine)."
+    },
+    {
+      "originalFile": "labroom_vedio/Women_Walk.avi",
+      "sizeMB": 747.51,
+      "status": "needs-transcode-avi",
+      "note": "747.5 MB uncompressed .avi (matches agent-jean holding handgun). Browsers do not play .avi natively — convert with ffmpeg."
+    },
+    {
+      "originalFile": "labroom_vedio/WorkFlow_Gojo.mp4",
+      "sizeMB": 1096.55,
+      "status": "unsorted-oversized",
+      "note": "1,096.55 MB raw 24-minute Maya skin-weight painting recording of Gojo_Rig.mb (toji-fushiguro). Speed up 20x for web showcase."
+    }
+  ]
+}

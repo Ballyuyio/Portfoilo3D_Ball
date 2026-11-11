@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /WorkingModelmage/
+Disallow: /scripts/
+
+Sitemap: ./sitemap.xml
+

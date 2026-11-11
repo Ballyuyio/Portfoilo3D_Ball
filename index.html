@@ -1,15 +1,801 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0; url=/Portfolio_Patanawan/">
-  <title>Redirecting to Portfolio...</title>
-  <script>
-    window.location.replace("/Portfolio_Patanawan/");
-  </script>
-</head>
-<body style="background:#0a0a0a; color:#fff; font-family:sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; margin:0;">
-  <p>Loading Portfolio Patanawan...</p>
-</body>
-</html>
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patanawan Jarunongkran (Ball Patanawan) — 3D Artist &amp; Technical Generalist | STREET WALL</title>
+  <meta name="description"
+    content="3D Artist portfolio for Patanawan Jarunongkran (Ball Patanawan) — Characters, Vehicles, Weapons, Environments, Maya Rigging &amp; Unity Game Assets in Graffiti Street Wall style." />
+  <meta property="og:title" content="Ball Patanawan — 3D Artist Portfolio (STREET WALL)" />
+  <meta property="og:description"
+    content="140+ Final Renders, 19 Wireframe vs Beauty Sliders, 54 Workflow Breakdowns, and 26 Gameplay &amp; Turntable Reels." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="./public/favicon.svg" />
+
+  <!-- Fonts: Graffiti Display ONLY on headings/tags; Clean Sans on body & Thai copy -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&amp;family=JetBrains+Mono:wght@500;700&amp;family=Noto+Sans+Thai:wght@400;500;600;700&amp;family=Permanent+Marker&amp;family=Rubik+Spray+Paint&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles/streetwall.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#mainContent" data-i18n="a11ySkip">Skip to wall content</a>
+
+  <!-- Concrete Wall + Noise Texture + Desktop-Only Spray Cursor Canvas -->
+  <div class="wall-backdrop" aria-hidden="true"></div>
+  <div class="wall-grain" aria-hidden="true"></div>
+  <canvas id="sprayCursorCanvas" aria-hidden="true"></canvas>
+
+  <!-- Street Stencil Loader (< 1s, auto-skipped via sessionStorage) -->
+  <div id="streetLoader" class="street-loader" role="status" aria-live="polite">
+    <div class="loader-tag">STREET WALL // BALL 3D</div>
+    <div class="loader-bar-wrap">
+      <div id="loaderBarFill" class="loader-bar-fill"></div>
+    </div>
+    <div id="loaderPct" class="loader-sub">SPRAYING PIGMENTS... 0%</div>
+  </div>
+
+  <!-- Top Sticky Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#top" class="brand-mark" id="brandHomeLink">
+        <span class="brand-stencil">BALL.3D</span>
+        <span class="brand-name">Patanawan Jarunongkran</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary Navigation">
+        <a href="#renders" class="nav-link" data-dot="pink" data-i18n="navRenders">Renders</a>
+        <a href="#workflow" class="nav-link" data-dot="cyan" data-i18n="navWorkflow">Workflow</a>
+        <a href="#motion" class="nav-link" data-dot="orange" data-i18n="navMotion">Motion</a>
+        <a href="#projects" class="nav-link" data-dot="pink" data-i18n="navProjects">Archive</a>
+        <a href="#about" class="nav-link" data-dot="cyan" data-i18n="navAbout">About</a>
+        <a href="#contact" class="nav-link" data-dot="yellow" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="langToggleBtn" class="lang-toggle" type="button" aria-label="Switch language EN / TH">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <path
+              d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+          </svg>
+          <span id="langBadgeText">TH / EN</span>
+        </button>
+
+        <a href="#contact" class="sticker-cta sticker-cta--header" data-i18n="ctaHire">HIRE / COMMISSION</a>
+
+        <button id="mobileMenuBtn" class="mobile-menu-btn" type="button" aria-expanded="false"
+          aria-controls="mobileDrawer" aria-label="Toggle Navigation Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileDrawer" class="mobile-drawer">
+      <a href="#renders" class="nav-link" data-dot="pink" data-i18n="navRenders">Renders</a>
+      <a href="#workflow" class="nav-link" data-dot="cyan" data-i18n="navWorkflow">Workflow</a>
+      <a href="#motion" class="nav-link" data-dot="orange" data-i18n="navMotion">Motion</a>
+      <a href="#projects" class="nav-link" data-dot="pink" data-i18n="navProjects">Archive</a>
+      <a href="#about" class="nav-link" data-dot="cyan" data-i18n="navAbout">About</a>
+      <a href="#contact" class="nav-link" data-dot="yellow" data-i18n="navContact">Contact</a>
+    </div>
+  </header>
+
+  <main id="mainContent" class="page-shell">
+    <!-- ================================================================
+         WALL VIEW (Primary Single-Wall Portfolio Experience)
+         ================================================================ -->
+    <div id="wallView" class="wall-view">
+
+      <!-- HERO -->
+      <section id="top" class="hero-section">
+        <div class="container hero-grid">
+          <div>
+            <div class="hero-badges">
+              <span class="hero-badge hero-badge--green">
+                <span class="hero-badge-dot"></span>
+                <span data-i18n="heroAvail">OPEN FOR INTERNSHIP, STUDIO ROLES &amp; COMMISSIONS</span>
+              </span>
+              <span class="hero-badge" data-i18n="heroSchool">KMUTT SoA+D // GAME DEV</span>
+            </div>
+
+            <div class="hero-alias">// BALL PATANAWAN :: STREET WALL FOLIO</div>
+            <h1 class="hero-name" data-i18n="heroHeadline">PATANAWAN JARUNONGKRAN</h1>
+
+            <p class="hero-role" data-i18n="heroRole">
+              3D Character, Prop &amp; Game Environment Artist — Modeling, Retopology, PBR Lookdev, Maya Rigging &amp;
+              Real-Time Animation
+            </p>
+
+            <p class="hero-bio" data-i18n="heroBio">
+              Media Technology (Game Development) undergraduate at King Mongkut's University of Technology Thonburi.
+              Turning raw polygons and ZBrush sculpts into production-ready characters, vehicles, weapons, and game
+              worlds with Autodesk Maya, Substance 3D Painter, and Unity.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#renders" class="btn-spray">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                  aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="m21 15-5-5L5 21" />
+                </svg>
+                <span data-i18n="heroBtnRenders">EXPLORE 140 RENDERS</span>
+              </a>
+              <a href="#motion" class="btn-spray btn-spray--ghost">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                  aria-hidden="true">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                <span data-i18n="heroBtnMotion">WATCH 26 MOTION CLIPS</span>
+              </a>
+            </div>
+
+            <div class="hero-metrics">
+              <div class="metric-item">
+                <strong id="statRenders">140</strong>
+                <span data-i18n="statRenders">Final Beauty Renders</span>
+              </div>
+              <div class="metric-item">
+                <strong id="statSliders">19</strong>
+                <span data-i18n="statSliders">Wire vs Beauty Sliders</span>
+              </div>
+              <div class="metric-item">
+                <strong id="statMotion">26</strong>
+                <span data-i18n="statMotion">Playable Reels &amp; Cycles</span>
+              </div>
+              <div class="metric-item">
+                <strong id="statProjects">30</strong>
+                <span data-i18n="statProjects">Organized Projects</span>
+              </div>
+            </div>
+
+            <a href="#renders" class="scroll-hint">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <polyline points="19 12 12 19 5 12" />
+              </svg>
+              <span data-i18n="scrollHint">SCROLL DOWN TO SPRAY WALL</span>
+            </a>
+          </div>
+
+          <!-- Hero Featured Piece with Masking Tape Corners -->
+          <div class="hero-poster-wrap reveal is-revealed">
+            <span class="tape-strip tape-tl" aria-hidden="true"></span>
+            <span class="tape-strip tape-tr" aria-hidden="true"></span>
+            <div class="hero-stage" id="heroStageWrap">
+              <img id="heroMainImg" src="./public/assets/renders/graffiti-submarine/01-submarine-hero.png"
+                alt="Featured 3D Render" width="1280" height="720" loading="eager" />
+            </div>
+            <div class="hero-stage-caption">
+              <div>
+                <div class="hero-stage-title" id="heroFeaturedTitle">Street Graffiti Submarine</div>
+                <div class="hero-stage-meta" id="heroFeaturedMeta">Maya • Substance 3D Painter • 138K Tris</div>
+              </div>
+              <a id="heroDossierLink" href="#/work/graffiti-submarine" class="channel-btn" data-i18n="openDossier">OPEN
+                DOSSIER</a>
+            </div>
+            <div class="hero-thumbs" id="heroThumbsRow" aria-label="Featured Artwork Switcher"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sprayed Band Wipe: Pink -->
+      <div class="band-wipe band-wipe--pink" aria-hidden="true">
+        <div class="band-wipe-bar"></div>
+      </div>
+
+      <!-- ================================================================
+           SECTION 01: RENDERS (HOT PINK #FF1FA2 DOMINANT)
+           ================================================================ -->
+      <section id="renders" class="wall-section">
+        <div class="halftone-patch halftone-tr" aria-hidden="true"></div>
+        <div class="container">
+          <div class="sec-head reveal">
+            <div class="sec-head-left">
+              <span class="stencil-kicker">01 // FINAL RENDERS</span>
+              <div class="sec-title-wrap">
+                <h2 class="sec-title" data-i18n="rendersTitle">FINAL BEAUTY WALL</h2>
+                <svg class="drip-strip" viewBox="0 0 320 26" aria-hidden="true">
+                  <rect x="0" y="0" width="290" height="4" fill="currentColor" style="color:var(--pink)" />
+                  <path class="drip-drop"
+                    d="M22 3v16a4 4 0 0 0 8 0V3zM78 3v22a3.5 3.5 0 0 0 7 0V3zM146 3v12a3 3 0 0 0 6 0V3zM214 3v19a4 4 0 0 0 8 0V3zM268 3v10a2.5 2.5 0 0 0 5 0V3z" />
+                </svg>
+              </div>
+              <p class="sec-subtitle" data-i18n="rendersSub">
+                High-resolution studio beauty shots, game characters, hard-surface vehicles, PBR combat weapons, and
+                stylized islands pulled directly from clean lookdev passes. Click any frame for Lightbox inspection.
+              </p>
+            </div>
+          </div>
+
+          <div class="street-toolbar" role="region" aria-label="Render Filters">
+            <div id="renderFilters" class="filter-pills"></div>
+            <div class="search-box">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#818595" stroke-width="2"
+                aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <input id="renderSearchInput" type="search" placeholder="Search asset or project..."
+                aria-label="Search renders" />
+            </div>
+          </div>
+
+          <div id="rendersGrid" class="renders-grid"></div>
+          <div id="rendersLoadMoreWrap" class="load-more-wrap"></div>
+        </div>
+      </section>
+
+      <!-- Sprayed Band Wipe: Cyan -->
+      <div class="band-wipe band-wipe--cyan" aria-hidden="true">
+        <div class="band-wipe-bar"></div>
+      </div>
+
+      <!-- ================================================================
+           SECTION 02: UNIFIED WORKFLOW (CYAN #1FD0E8 DOMINANT)
+           Combines Before/After Sliders + All Ordered Pipeline Breakdowns
+           ================================================================ -->
+      <section id="workflow" class="wall-section">
+        <div class="halftone-patch halftone-tl" aria-hidden="true"></div>
+        <div class="container">
+          <div class="sec-head reveal">
+            <div class="sec-head-left">
+              <span class="stencil-kicker">02 // UNIFIED WORKFLOW</span>
+              <div class="sec-title-wrap">
+                <h2 class="sec-title" data-i18n="workflowTitle">TOPOLOGY, RIGGING &amp; LOOKDEV</h2>
+                <svg class="drip-strip" viewBox="0 0 320 26" aria-hidden="true">
+                  <rect x="0" y="0" width="305" height="4" fill="currentColor" style="color:var(--cyan)" />
+                  <path class="drip-drop"
+                    d="M35 3v20a4 4 0 0 0 8 0V3zM96 3v13a3 3 0 0 0 6 0V3zM172 3v18a3.5 3.5 0 0 0 7 0V3zM245 3v11a3 3 0 0 0 6 0V3zM290 3v16a3 3 0 0 0 6 0V3z" />
+                </svg>
+              </div>
+              <p class="sec-subtitle" data-i18n="workflowSub">
+                Combined production proof inside one unified pipeline section: drag the 19 camera-matched Before/After
+                wireframe sliders or filter all 54 ordered Maya, ZBrush, Substance 3D, and Unity engine captures.
+              </p>
+            </div>
+          </div>
+
+          <div class="workflow-subtabs" role="tablist" aria-label="Workflow Sub-views">
+            <button type="button" class="subtab-btn is-active" data-wf-tab="all" data-i18n="wfTabAll">ALL WORKFLOW (19
+              SLIDERS + 54 BREAKDOWNS)</button>
+            <button type="button" class="subtab-btn" data-wf-tab="sliders" data-i18n="wfTabSliders">BEFORE / AFTER
+              SLIDERS (19)</button>
+            <button type="button" class="subtab-btn" data-wf-tab="pipeline" data-i18n="wfTabPipe">ORDERED PIPELINE FEED
+              (54)</button>
+          </div>
+
+          <div id="workflowSlidersBlock">
+            <div id="beforeAfterGrid" class="ba-grid"></div>
+          </div>
+
+          <div id="workflowPipelineBlock" style="margin-top:34px;">
+            <div class="street-toolbar">
+              <div id="workflowStepFilters" class="filter-pills"></div>
+            </div>
+            <div id="workflowFeedGrid" class="workflow-grid"></div>
+            <div id="workflowLoadMoreWrap" class="load-more-wrap"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sprayed Band Wipe: Orange -->
+      <div class="band-wipe band-wipe--orange" aria-hidden="true">
+        <div class="band-wipe-bar"></div>
+      </div>
+
+      <!-- ================================================================
+           SECTION 03: MOTION (ORANGE #FF8A1F DOMINANT) — Separated Sub-Groups
+           ================================================================ -->
+      <section id="motion" class="wall-section">
+        <div class="halftone-patch halftone-tr" aria-hidden="true"></div>
+        <div class="container">
+          <div class="sec-head reveal">
+            <div class="sec-head-left">
+              <span class="stencil-kicker">03 // MOTION &amp; GAMEPLAY</span>
+              <div class="sec-title-wrap">
+                <h2 class="sec-title" data-i18n="motionTitle">REELS, CYCLES &amp; TURNTABLES</h2>
+                <svg class="drip-strip" viewBox="0 0 320 26" aria-hidden="true">
+                  <rect x="0" y="0" width="295" height="4" fill="currentColor" style="color:var(--orange)" />
+                  <path class="drip-drop"
+                    d="M26 3v18a3.5 3.5 0 0 0 7 0V3zM110 3v22a4 4 0 0 0 8 0V3zM184 3v14a3 3 0 0 0 6 0V3zM256 3v17a3.5 3.5 0 0 0 7 0V3z" />
+                </svg>
+              </div>
+              <p class="sec-subtitle" data-i18n="motionSub">
+                26 H.264 native MP4 clips cleanly split into 5 subject groups. Posters stay static until clicked or
+                scrolled into active playback, keeping GPU memory low.
+              </p>
+            </div>
+          </div>
+
+          <div id="motionGroupsContainer" class="motion-groups-stack"></div>
+        </div>
+      </section>
+
+      <!-- Sprayed Band Wipe: Pink -->
+      <div class="band-wipe band-wipe--pink" aria-hidden="true">
+        <div class="band-wipe-bar"></div>
+      </div>
+
+      <!-- ================================================================
+           SECTION 04: 30-PROJECT ARCHIVE (LINKS TO #/work/[slug])
+           ================================================================ -->
+      <section id="projects" class="wall-section">
+        <div class="container">
+          <div class="sec-head reveal">
+            <div class="sec-head-left">
+              <span class="stencil-kicker">04 // PROJECT DOSSIERS</span>
+              <div class="sec-title-wrap">
+                <h2 class="sec-title" data-i18n="projectsTitle">ALL 30 PROJECT FILES</h2>
+                <svg class="drip-strip" viewBox="0 0 320 26" aria-hidden="true">
+                  <rect x="0" y="0" width="275" height="4" fill="currentColor" style="color:var(--pink)" />
+                  <path class="drip-drop"
+                    d="M40 3v15a3 3 0 0 0 6 0V3zM135 3v21a4 4 0 0 0 8 0V3zM230 3v13a3 3 0 0 0 6 0V3z" />
+                </svg>
+              </div>
+              <p class="sec-subtitle" data-i18n="projectsSub">
+                Browse complete grouped dossiers combining beauty renders, matched wireframes, polycounts, and animation
+                clips per project.
+              </p>
+            </div>
+          </div>
+
+          <div id="projectsArchiveGrid" class="projects-wall-grid"></div>
+        </div>
+      </section>
+
+      <!-- Sprayed Band Wipe: Cyan -->
+      <div class="band-wipe band-wipe--cyan" aria-hidden="true">
+        <div class="band-wipe-bar"></div>
+      </div>
+
+      <!-- ================================================================
+           SECTION 05: ABOUT & EXPERIENCE
+           ================================================================ -->
+      <section id="about" class="wall-section">
+        <div class="container">
+          <div class="sec-head reveal">
+            <div class="sec-head-left">
+              <span class="stencil-kicker">05 // ARTIST PROFILE</span>
+              <div class="sec-title-wrap">
+                <h2 class="sec-title" data-i18n="aboutTitle">BEHIND THE SPRAY CAN</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-grid">
+            <aside class="portrait-card">
+              <div class="portrait-placeholder">
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#1FD0E8" stroke-width="1.6"
+                  aria-hidden="true">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                <strong style="color:#fff;" data-i18n="portraitLabel">Artist Portrait Slot</strong>
+                <span class="portrait-todo">TODO: replace portrait photo (.jpg / .webp)</span>
+                <p style="margin:0; font-size:0.82rem; color:var(--ink-muted);" data-i18n="aboutIdentityLine">
+                  Patanawan Jarunongkran (ปฐณวรรณ จารุนงคราญ) // Ball Patanawan
+                </p>
+              </div>
+            </aside>
+
+            <div class="about-panel">
+              <div>
+                <h3 style="margin:0 0 10px; font-size:1.35rem; color:#fff;" data-i18n="aboutHeading">
+                  Game-Ready 3D Modeler, Rigger &amp; Animator — KMUTT SoA+D
+                </h3>
+                <p style="margin:0; color:var(--ink-muted); line-height:1.75;" data-i18n="aboutStory">
+                  Currently pursuing a B.Sc. in Media Technology (Game Development) at School of Architecture and
+                  Design, KMUTT (2024–Present). My workflow bridges high-poly sculpting, clean quad topology, PBR
+                  surface storytelling, and Maya AdvancedSkeleton / custom NURBS rigs ready for Unity and Roblox Studio
+                  production pipelines.
+                </p>
+              </div>
+
+              <div class="software-grid">
+                <div class="tool-tile">
+                  <div class="tool-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                      <polyline points="2 17 12 22 22 17" />
+                      <polyline points="2 12 12 17 22 12" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Autodesk Maya + AdvancedSkeleton</h4>
+                    <p data-i18n="toolMaya">Sub-D Hard-Surface, Retopo, UV Layout, IK/FK Rigs &amp; Arnold Lookdev</p>
+                  </div>
+                </div>
+                <div class="tool-tile">
+                  <div class="tool-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 19l7-7 3 3-7 7-3-3z" />
+                      <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>ZBrush</h4>
+                    <p data-i18n="toolZbrush">Organic Anatomy, Stylized Creatures, Rocks &amp; Chibi Silhouettes</p>
+                  </div>
+                </div>
+                <div class="tool-tile">
+                  <div class="tool-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path
+                        d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 1 0-3-3Z" />
+                      <path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Substance 3D Painter &amp; Photoshop</h4>
+                    <p data-i18n="toolSubstance">PBR Metals, Hand-Painted Graffiti Decals &amp; Texture Sheets</p>
+                  </div>
+                </div>
+                <div class="tool-tile">
+                  <div class="tool-icon-box" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="2" y="6" width="20" height="12" rx="2" />
+                      <path d="M6 12h4M8 10v4M15 13h.01M18 11h.01" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Unity &amp; Roblox Studio</h4>
+                    <p data-i18n="toolEngines">Real-Time Prefab Assembly, Animator Controllers &amp; Mobile Prototypes
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-list">
+                <div class="timeline-item">
+                  <span>2024 — PRESENT</span>
+                  <strong data-i18n="tl1Title">B.Sc. Media Technology (Game Development) — SoA+D, KMUTT</strong>
+                  <p data-i18n="tl1Desc">Game character pipelines, environment storytelling, shaders, rigging, and
+                    real-time Unity integration.</p>
+                </div>
+                <div class="timeline-item">
+                  <span>2025 — 2026</span>
+                  <strong data-i18n="tl2Title">Year-3 Game Art Packs &amp; Freelance 3D Assets</strong>
+                  <p data-i18n="tl2Desc">Shipped Crystal Stone Golem, Hooded Hunter RPG pack, Furry Guardian mobile
+                    prototype, and stylized Roblox props. TODO: add studio / team names.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sprayed Band Wipe: Orange -->
+      <div class="band-wipe band-wipe--orange" aria-hidden="true">
+        <div class="band-wipe-bar"></div>
+      </div>
+
+      <!-- ================================================================
+           SECTION 06: SERVICES & COMMISSION PIPELINE
+           ================================================================ -->
+      <section id="services" class="wall-section">
+        <div class="container">
+          <div class="sec-head reveal">
+            <div class="sec-head-left">
+              <span class="stencil-kicker">06 // CAPABILITIES &amp; PIPELINE</span>
+              <div class="sec-title-wrap">
+                <h2 class="sec-title" data-i18n="servicesTitle">SERVICES &amp; WORK PROCESS</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <div class="service-num">01</div>
+              <h3 data-i18n="srv1Title">3D Characters &amp; Creatures</h3>
+              <p data-i18n="srv1Desc">Game-ready stylized, anime chibi, and monster characters with clean deformation
+                loops and baked PBR textures.</p>
+            </article>
+            <article class="service-card">
+              <div class="service-num">02</div>
+              <h3 data-i18n="srv2Title">Vehicles &amp; Combat Weapons</h3>
+              <p data-i18n="srv2Desc">High-detail Sub-D motorcycles, sci-fi submarines, firearms, blades, and product
+                visualization renders.</p>
+            </article>
+            <article class="service-card">
+              <div class="service-num">03</div>
+              <h3 data-i18n="srv3Title">Maya Rigging &amp; Game Cycles</h3>
+              <p data-i18n="srv3Desc">IK/FK AdvancedSkeleton or custom NURBS rigs plus export-ready Idle, Walk, Run,
+                Attack, and Skill clips.</p>
+            </article>
+            <article class="service-card">
+              <div class="service-num">04</div>
+              <h3 data-i18n="srv4Title">Dioramas &amp; UGC Props</h3>
+              <p data-i18n="srv4Desc">Modular buildings, horror/interior rooms, floating game islands, and optimized
+                Roblox / Unity prop kits.</p>
+            </article>
+          </div>
+
+          <div class="pipeline-strip">
+            <div class="pipe-step"><span>STEP 01</span><strong data-i18n="pipe1">Brief &amp; Poly Budget</strong></div>
+            <div class="pipe-step"><span>STEP 02</span><strong data-i18n="pipe2">Blockout &amp; Wireframe</strong></div>
+            <div class="pipe-step"><span>STEP 03</span><strong data-i18n="pipe3">PBR Texturing &amp; Rig</strong></div>
+            <div class="pipe-step"><span>STEP 04</span><strong data-i18n="pipe4">Engine &amp; Render Delivery</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sprayed Band Wipe: Yellow -->
+      <div class="band-wipe band-wipe--yellow" aria-hidden="true">
+        <div class="band-wipe-bar"></div>
+      </div>
+
+      <!-- ================================================================
+           SECTION 07: CONTACT (YELLOW #FFD21F DOMINANT)
+           ================================================================ -->
+      <section id="contact" class="wall-section">
+        <div class="container">
+          <div class="sec-head reveal">
+            <div class="sec-head-left">
+              <span class="stencil-kicker">07 // CONTACT WALL</span>
+              <div class="sec-title-wrap">
+                <h2 class="sec-title" data-i18n="contactTitle">LET'S BUILD SOMETHING 3D</h2>
+                <svg class="drip-strip" viewBox="0 0 320 26" aria-hidden="true">
+                  <rect x="0" y="0" width="285" height="4" fill="currentColor" style="color:var(--yellow)" />
+                  <path class="drip-drop"
+                    d="M32 3v18a3.5 3.5 0 0 0 7 0V3zM120 3v22a4 4 0 0 0 8 0V3zM210 3v14a3 3 0 0 0 6 0V3z" />
+                </svg>
+              </div>
+              <p class="sec-subtitle" data-i18n="contactSub">
+                Available for game studio internships, junior 3D modeler/animator roles, and freelance commissions.
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-info-card">
+              <span class="avail-pill" data-i18n="contactBadge">AVAILABLE NOW // BANGKOK &amp; REMOTE</span>
+
+              <div class="contact-channels">
+                <div class="channel-row">
+                  <div>
+                    <div class="channel-label">Email</div>
+                    <div class="channel-val">Ballyuyio@gmail.com</div>
+                  </div>
+                  <button id="copyEmailBtn" class="channel-btn" type="button" data-i18n="copyBtn">COPY</button>
+                </div>
+
+                <div class="channel-row">
+                  <div>
+                    <div class="channel-label">Phone</div>
+                    <div class="channel-val">096-782-2469</div>
+                  </div>
+                  <a href="tel:0967822469" class="channel-btn">CALL</a>
+                </div>
+
+                <div class="channel-row">
+                  <div>
+                    <div class="channel-label">ArtStation</div>
+                    <div class="channel-val">artstation.com/ball_patanawan</div>
+                  </div>
+                  <a href="https://www.artstation.com/ball_patanawan" target="_blank" rel="noopener noreferrer"
+                    class="channel-btn">OPEN</a>
+                </div>
+
+                <div class="channel-row">
+                  <div>
+                    <div class="channel-label">Instagram</div>
+                    <div class="channel-val">instagram.com/ball_patanawan</div>
+                  </div>
+                  <a href="https://www.instagram.com/ball_patanawan/" target="_blank" rel="noopener noreferrer"
+                    class="channel-btn">OPEN</a>
+                </div>
+
+                <div class="channel-row">
+                  <div>
+                    <div class="channel-label">Facebook</div>
+                    <div class="channel-val">facebook.com/ball.patanawan.2025</div>
+                  </div>
+                  <a href="https://www.facebook.com/ball.patanawan.2025" target="_blank" rel="noopener noreferrer"
+                    class="channel-btn">OPEN</a>
+                </div>
+              </div>
+
+              <div>
+                <div class="channel-label" style="margin-bottom:8px;" data-i18n="socialsNote">Social Channels</div>
+                <div class="social-links-row">
+                  <a href="https://www.instagram.com/ball_patanawan/" target="_blank" rel="noopener noreferrer"
+                    class="social-pill">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      aria-hidden="true">
+                      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                    </svg>
+                    Instagram
+                  </a>
+                  <a href="https://www.facebook.com/ball.patanawan.2025" target="_blank" rel="noopener noreferrer"
+                    class="social-pill">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      aria-hidden="true">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                    Facebook
+                  </a>
+                  <a href="https://www.artstation.com/ball_patanawan" target="_blank" rel="noopener noreferrer"
+                    class="social-pill">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path
+                        d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.332h13.754l-2.57-4.837H0zm16.59-3.214L10.372 3.56a2.41 2.41 0 0 0-2.115-1.34c-.886 0-1.688.5-2.096 1.29L.74 13.067l3.96 6.858h.002c.07.12.155.23.25.33l7.46-12.923 4.178 7.122h0zM23.27 19.3l-5.698-9.868-2.618 4.536 3.197 5.54h3.692a1.734 1.734 0 0 0 1.427-2.708v0z" />
+                    </svg>
+                    ArtStation
+                  </a>
+                  <span class="social-pill">Behance <span class="todo-tag">(TODO)</span></span>
+                  <span class="social-pill">YouTube <span class="todo-tag">(TODO)</span></span>
+                </div>
+              </div>
+            </div>
+
+            <form id="contactForm" class="contact-form-card" novalidate>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="cName" data-i18n="fName">Your Name *</label>
+                  <input id="cName" name="name" type="text" required placeholder="Studio / Client Name" />
+                  <span class="form-error" id="errName"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="cEmail" data-i18n="fEmail">Email Address *</label>
+                  <input id="cEmail" name="email" type="email" required placeholder="you@studio.com" />
+                  <span class="form-error" id="errEmail"></span>
+                </div>
+
+                <div class="form-field">
+                  <label for="cType" data-i18n="fType">Project Type</label>
+                  <select id="cType" name="projectType">
+                    <option value="3D Character / Creature">3D Character / Creature</option>
+                    <option value="Vehicle / Hard-Surface Prop">Vehicle / Hard-Surface Prop</option>
+                    <option value="Rigging &amp; Game Animation">Rigging &amp; Game Animation</option>
+                    <option value="Environment / Diorama">Environment / Diorama</option>
+                    <option value="Internship / Studio Role">Internship / Studio Role</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label for="cBudget" data-i18n="fBudget">Estimated Scope / Budget</label>
+                  <select id="cBudget" name="budget">
+                    <option value="Internship / Full-Time Offer">Internship / Full-Time Role</option>
+                    <option value="Under $300 / Asset Pack">Indie / Small Pack (&lt; $300)</option>
+                    <option value="$300 - $1,000">$300 - $1,000</option>
+                    <option value="$1,000+">$1,000+ / Production</option>
+                  </select>
+                </div>
+
+                <div class="form-field form-field--full">
+                  <label for="cMessage" data-i18n="fMessage">Project Brief *</label>
+                  <textarea id="cMessage" name="message" rows="4" required
+                    placeholder="Target engine (Unity / Unreal / Roblox), reference links, timeline..."></textarea>
+                  <span class="form-error" id="errMessage"></span>
+                </div>
+              </div>
+
+              <div
+                style="margin-top:14px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+                <button type="submit" class="sticker-cta" data-i18n="fSubmit">SEND BRIEF VIA EMAIL</button>
+                <span style="font-family:var(--font-mono); font-size:0.74rem; color:var(--ink-dim);">Target:
+                  Ballyuyio@gmail.com</span>
+              </div>
+              <div id="contactFormStatus" class="form-status" role="status"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================================================================
+         PROJECT DETAIL VIEW (#/work/[slug])
+         ================================================================ -->
+    <section id="projectDetailView" class="detail-view" aria-label="Project Detail Dossier">
+      <div id="projectDetailContainer" class="container"></div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-tag">STREET WALL // PATANAWAN.3D</div>
+        <div style="font-size:0.84rem; color:var(--ink-muted); margin-top:4px;">
+          &copy; 2026 Patanawan Jarunongkran (Ball Patanawan) &bull; B.Sc. Media Technology (Game Dev), KMUTT
+        </div>
+        <div style="display:flex;gap:12px;margin-top:10px;align-items:center;">
+          <a href="https://www.instagram.com/ball_patanawan/" target="_blank" rel="noopener noreferrer"
+            style="color:var(--yellow);font-size:0.75rem;font-family:var(--font-mono);text-decoration:none;">Instagram</a>
+          <span style="color:#333;">&bull;</span>
+          <a href="https://www.facebook.com/ball.patanawan.2025" target="_blank" rel="noopener noreferrer"
+            style="color:var(--cyan);font-size:0.75rem;font-family:var(--font-mono);text-decoration:none;">Facebook</a>
+          <span style="color:#333;">&bull;</span>
+          <a href="https://www.artstation.com/ball_patanawan" target="_blank" rel="noopener noreferrer"
+            style="color:var(--pink);font-size:0.75rem;font-family:var(--font-mono);text-decoration:none;">ArtStation</a>
+        </div>
+      </div>
+      <button id="backToTopBtn" class="back-top-btn" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          aria-hidden="true">
+          <line x1="12" y1="19" x2="12" y2="5" />
+          <polyline points="5 12 12 5 19 12" />
+        </svg>
+        <span data-i18n="backTop">BACK TO TOP</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div id="lightboxModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+    <div class="modal-topbar">
+      <h3 id="lbTitle" class="modal-title">Artwork Inspection</h3>
+      <div class="modal-controls">
+        <button id="lbZoomBtn" class="modal-btn" type="button">ZOOM 1.65x</button>
+        <button id="lbDossierBtn" class="modal-btn" type="button">OPEN PROJECT</button>
+        <button id="lbCloseBtn" class="modal-btn modal-btn--close" type="button">CLOSE [ESC]</button>
+      </div>
+    </div>
+    <div class="modal-stage" id="lbStage">
+      <button id="lbPrevBtn" class="modal-arrow modal-arrow--prev" type="button" aria-label="Previous Image">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+      <img id="lbImg" src="" alt="" />
+      <button id="lbNextBtn" class="modal-arrow modal-arrow--next" type="button" aria-label="Next Image">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+    </div>
+    <div class="modal-caption-bar">
+      <span id="lbCaptionLeft">-</span>
+      <span id="lbCaptionRight">-</span>
+    </div>
+  </div>
+
+  <!-- Motion Theater Modal (Custom Video Player) -->
+  <div id="motionModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="mvTitle">
+    <div class="modal-topbar">
+      <h3 id="mvTitle" class="modal-title">Motion Clip</h3>
+      <div class="modal-controls">
+        <button id="mvSpeedBtn" class="modal-btn" type="button">SPEED: 1.0x</button>
+        <button id="mvLoopBtn" class="modal-btn" type="button">LOOP: ON</button>
+        <button id="mvDossierBtn" class="modal-btn" type="button">PROJECT DOSSIER</button>
+        <button id="mvCloseBtn" class="modal-btn modal-btn--close" type="button">CLOSE [ESC]</button>
+      </div>
+    </div>
+    <div class="modal-stage">
+      <video id="mvVideo" controls playsinline loop preload="metadata"></video>
+    </div>
+    <div class="modal-caption-bar">
+      <span id="mvMetaLeft">-</span>
+      <span id="mvMetaRight">-</span>
+    </div>
+  </div>
+
+  <!-- Data & Zero-Build Scripts (works cleanly on double-click file:/// AND localhost) -->
+  <script src="./data/projects.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="./js/streetfx.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+
+</html>
