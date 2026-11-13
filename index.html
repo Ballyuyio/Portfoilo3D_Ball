@@ -17,10 +17,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Bungee&amp;family=JetBrains+Mono:wght@500;700&amp;family=Noto+Sans+Thai:wght@400;500;600;700&amp;family=Permanent+Marker&amp;family=Rubik+Spray+Paint&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bungee&amp;family=JetBrains+Mono:wght@500;700&amp;family=Noto+Sans+Thai:wght@400;600;700&amp;family=Rubik+Spray+Paint&amp;family=Space+Grotesk:wght@400;600;700&amp;display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="./styles/streetwall.css" />
+  <link rel="preload" as="image" type="image/webp"
+    imagesrcset="./public/assets/renders/graffiti-submarine/thumbs/01-submarine-hero-thumb-400.webp 400w, ./public/assets/renders/graffiti-submarine/01-submarine-hero.webp 833w"
+    imagesizes="(max-width: 767px) 92vw, 580px" fetchpriority="high" />
+  <link rel="stylesheet" href="./styles/streetwall.min.css" />
 </head>
 
 <body>
@@ -177,8 +180,14 @@
             <span class="tape-strip tape-tl" aria-hidden="true"></span>
             <span class="tape-strip tape-tr" aria-hidden="true"></span>
             <div class="hero-stage" id="heroStageWrap">
-              <img id="heroMainImg" src="./public/assets/renders/graffiti-submarine/01-submarine-hero.png"
-                alt="Featured 3D Render" width="1280" height="720" loading="eager" />
+              <picture id="heroMainPicture">
+                <source id="heroMainWebpSource" type="image/webp"
+                  srcset="./public/assets/renders/graffiti-submarine/thumbs/01-submarine-hero-thumb-400.webp 400w, ./public/assets/renders/graffiti-submarine/01-submarine-hero.webp 833w"
+                  sizes="(max-width: 767px) 92vw, 580px" />
+                <img id="heroMainImg" src="./public/assets/renders/graffiti-submarine/01-submarine-hero.png"
+                  alt="Street Graffiti Submarine — Featured 3D Render" width="833" height="675" loading="eager"
+                  fetchpriority="high" decoding="async" />
+              </picture>
             </div>
             <div class="hero-stage-caption">
               <div>
@@ -281,6 +290,7 @@
 
           <div id="workflowSlidersBlock">
             <div id="beforeAfterGrid" class="ba-grid"></div>
+            <div id="baLoadMoreWrap" class="load-more-wrap"></div>
           </div>
 
           <div id="workflowPipelineBlock" style="margin-top:34px;">
@@ -790,12 +800,12 @@
   </div>
 
   <!-- Data & Zero-Build Scripts (works cleanly on double-click file:/// AND localhost) -->
-  <script src="./data/projects.js"></script>
+  <script defer src="./data/projects.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script defer src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
-  <script src="./js/streetfx.js"></script>
-  <script src="./js/app.js"></script>
+  <script defer src="./js/streetfx.min.js"></script>
+  <script defer src="./js/app.min.js"></script>
 </body>
 
 </html>

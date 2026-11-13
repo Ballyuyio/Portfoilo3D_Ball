@@ -23,26 +23,27 @@ Double-clicking `index.html` works directly in Chrome / Edge without any server 
 ## Folder Structure
 
 ```text
-E:\Portfolio_Patanawan\
-├── index.html                  # Semantic STREET WALL entry (Renders, Workflow, Motion, Archive, About, Contact, Modals)
-├── styles/streetwall.css       # Graffiti / concrete wall CSS variables, responsive grids & prefers-reduced-motion rules
+E:\Portfoilo3D_Ball\
+├── index.html                    # Semantic STREET WALL entry (preload LCP WebP, deferred scripts)
+├── AUDIT_AND_OPTIMIZATION_LOG.md # Full Step 1-4 audit, 443-image inventory & optimization change log
+├── styles/
+│   ├── streetwall.css            # Mobile-first CSS source (360px/390px/768px/1024px, >=44px tap targets)
+│   └── streetwall.min.css        # Minified production stylesheet linked by index.html
 ├── js/
-│   ├── streetfx.js             # Desktop-only spray-can cursor canvas, stencil loader, ScrollTrigger / Lenis integration
-│   └── app.js                  # State router (#/work/[slug]), EN/TH switcher, Before/After sliders, Lightbox & Motion Theater
+│   ├── streetfx.js / .min.js     # Desktop spray cursor canvas, non-blocking stencil loader, ScrollTrigger / Lenis
+│   └── app.js / .min.js          # Runtime data hydration, responsive <picture> WebP, router (#/work/[slug]), modals
 ├── data/
-│   ├── projects.json           # Complete normalized portfolio & asset inventory metadata
-│   ├── projects.js             # Classic script mirror (window.PORTFOLIO_DATA) for file:/// support
-│   └── asset-report.json       # Full audit report (counts, duplicate skips, frame sequence skips, unsorted items)
+│   ├── projects.json             # Complete normalized portfolio metadata backup
+│   ├── projects.js               # Deduplicated script payload (window.PORTFOLIO_DATA, 449 KB) for file:/// support
+│   └── asset-report.json         # Full audit report (counts, duplicate skips, frame sequence skips, unsorted items)
 ├── public/
-│   ├── favicon.svg             # Stencil BP SVG icon
+│   ├── favicon.svg               # Stencil BP SVG icon
 │   └── assets/{renders|workflow|animations}/{project-slug}/
-│       └── thumbs/             # 800px optimized JPEG thumbnails & 1280px MP4/GIF poster frames
-├── scripts/
-│   ├── organize-assets.js      # Non-destructive organizer reading ./WorkingModelmage (READ-ONLY)
-│   └── media_helper.ps1        # Windows .NET/Shell32 thumbnail, dimension, poster & LQIP extractor
-├── server.js                   # Zero-dependency Node static server (HTTP 206 Range streaming, clean headers)
-├── START_PORTFOLIO.bat         # Windows launcher
-└── WorkingModelmage/           # Original raw folder (UNTOUCHED, READ-ONLY source of truth)
+│       ├── *.webp                # Optimized WebP full-res / animated WebP + original JPG/PNG/GIF fallbacks
+│       └── thumbs/               # 800px WebP/JPG thumbnails & *-400.webp mobile-first responsive variants
+├── _backup/                      # Original unedited copies of index.html, CSS, JS, and data/ before optimization
+├── _unused/                      # Unreferenced images moved safely out of public/ (review before permanent removal)
+└── Portfolio_Patanawan/          # Legacy subfolder copy + WorkingModelmage/ (UNTOUCHED, READ-ONLY source of truth)
 ```
 
 ---
@@ -84,8 +85,8 @@ ffmpeg -i "WorkingModelmage/labroom_vedio/WorkFlow_Gojo.mp4" -filter:v "setpts=0
 
 ---
 
-## Deploying Online
+## Deploying Online (Static Host Ready)
 
-Make sure `./WorkingModelmage/` and `./scripts/` are excluded before uploading (`.gitignore` / deploy ignore recommended because raw `.avi` files total ~11 GB):
-- **Vercel / Netlify / Cloudflare Pages**: Set publish directory to `.` (static files only: `index.html`, `styles/`, `js/`, `data/`, `public/`, `robots.txt`, `sitemap.xml`). Keep `WorkingModelmage/` out of the deployment bundle.
-- **GitHub Pages**: Commit only `index.html`, `styles/`, `js/`, `data/`, `public/`, `README.md`, `robots.txt`, and `sitemap.xml`.
+- **Vercel / Netlify / Cloudflare Pages / GitHub Pages**: Deploy root `.` as a pure static site (`Framework Preset: Other`, `Build Command`: empty, `Output Directory`: `.`).
+- **Keep out of deployment / Git if size-limited**: Exclude `Portfolio_Patanawan/` (which includes the ~11 GB READ-ONLY `WorkingModelmage/` and duplicate `Portfolio_Patanawan/public/`), `_backup/`, `_unused/`, and `scripts/` via `.vercelignore` / `.gitignore`.
+- **Note on minified files**: `index.html` loads `./styles/streetwall.min.css`, `./js/streetfx.min.js`, and `./js/app.min.js`. If you edit `styles/streetwall.css` or `js/*.js`, re-generate the `.min.*` files before deploying. See [AUDIT_AND_OPTIMIZATION_LOG.md](./AUDIT_AND_OPTIMIZATION_LOG.md) for the full audit & optimization history.

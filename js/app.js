@@ -16,6 +16,57 @@
     return;
   }
 
+  // Hydrate deduplicated portfolio payload into full runtime feeds (supports file:/// cleanly)
+  (function hydrateData() {
+    const baMap = new Map();
+    const clipMap = new Map();
+    DATA.projects.forEach(p => {
+      (p.renders || []).forEach(r => {
+        if (!r.projectTitle) r.projectTitle = p.title;
+        if (!r.projectTitleTh) r.projectTitleTh = p.titleTh;
+        if (!r.category) r.category = p.category;
+        if (!r.accent) r.accent = p.accent;
+        if (!r.software) r.software = p.software;
+      });
+      (p.workflow || []).forEach(w => {
+        if (!w.projectTitle) w.projectTitle = p.title;
+        if (!w.projectTitleTh) w.projectTitleTh = p.titleTh;
+        if (!w.accent) w.accent = p.accent;
+        if (!w.software) w.software = p.software;
+      });
+      (p.beforeAfter || []).forEach(b => baMap.set(b.id, b));
+      (p.animations || []).forEach(a => {
+        if (!a.projectTitle) a.projectTitle = p.title;
+        if (!a.projectTitleTh) a.projectTitleTh = p.titleTh;
+        clipMap.set(a.id, a);
+      });
+      if (!p.cover) {
+        p.cover = (p.renders && p.renders[0]) || (p.workflow && p.workflow[0]) || null;
+      }
+    });
+    if (!Array.isArray(DATA.rendersFeed)) {
+      DATA.rendersFeed = DATA.projects.flatMap(p => p.renders || []);
+    }
+    if (!Array.isArray(DATA.workflowFeed)) {
+      DATA.workflowFeed = DATA.projects.flatMap(p => p.workflow || []);
+    }
+    if (!Array.isArray(DATA.beforeAfterPairs)) {
+      const order = DATA.beforeAfterOrder || [];
+      DATA.beforeAfterPairs = order.map(id => baMap.get(id)).filter(Boolean);
+      if (!DATA.beforeAfterPairs.length) DATA.beforeAfterPairs = Array.from(baMap.values());
+    }
+    if (!Array.isArray(DATA.motionGroups) && Array.isArray(DATA.motionGroupDefs)) {
+      DATA.motionGroups = DATA.motionGroupDefs.map(g => ({
+        id: g.id,
+        title: g.title,
+        titleTh: g.titleTh,
+        accent: g.accent,
+        desc: g.desc,
+        clips: (g.clipIds || []).map(id => clipMap.get(id)).filter(Boolean)
+      }));
+    }
+  })();
+
   const PROJECT_MAP = new Map(DATA.projects.map(p => [p.slug, p]));
 
   // -------------------------------------------------------------------------
@@ -192,6 +243,7 @@
     renderLimit: 24,
     wfTab: 'all',
     wfStepFilter: 'all',
+    baLimit: 6,
     wfLimit: 12,
     lightboxList: [],
     lightboxIdx: 0,
@@ -233,6 +285,31 @@
     return itemCat === filterCat;
   }
 
+  function toWebp(p) {
+    return p ? String(p).replace(/\.(png|jpe?g|gif)$/i, '.webp') : '';
+  }
+
+  function to400Webp(p) {
+    return p ? String(p).replace(/\.(png|jpe?g)$/i, '-400.webp') : '';
+  }
+
+  function renderThumbPicture(thumbPath, fallbackSrc, alt, width, height, sizes, loading, extraAttrs) {
+    const tSrc = thumbPath || fallbackSrc || '';
+    const w800 = toWebp(tSrc);
+    const w400 = to400Webp(tSrc);
+    const srcsetVal = (w400 && w400 !== tSrc && w800 && w800 !== tSrc)
+      ? `${w400} 400w, ${w800} 800w`
+      : (w800 && w800 !== tSrc ? `${w800} 800w` : '');
+    const sourceTag = srcsetVal
+      ? `<source type="image/webp" srcset="${esc(srcsetVal)}" sizes="${esc(sizes || '(max-width: 767px) 92vw, 410px')}" />`
+      : '';
+    const wAttr = width ? ` width="${esc(width)}"` : '';
+    const hAttr = height ? ` height="${esc(height)}"` : '';
+    const lAttr = loading ? ` loading="${esc(loading)}"` : '';
+    const xAttr = extraAttrs ? ` ${extraAttrs}` : '';
+    return `<picture>${sourceTag}<img src="${esc(tSrc)}" alt="${esc(alt || '')}"${wAttr}${hAttr}${lAttr} decoding="async"${xAttr} /></picture>`;
+  }
+
   // -------------------------------------------------------------------------
   // HERO SHOWCASE CAROUSEL
   // -------------------------------------------------------------------------
@@ -259,7 +336,7 @@
 
     thumbsRow.innerHTML = heroFeaturedItems.map((item, idx) => `
       <button type="button" class="hero-thumb-btn ${idx === heroCurrentIdx ? 'is-active' : ''}" data-hero-idx="${idx}" aria-label="${esc(item.project.title)}">
-        <img src="${esc(item.cover.thumb || item.cover.src)}" alt="${esc(item.project.title)}" width="${esc(item.cover.width)}" height="${esc(item.cover.height)}" />
+        ${renderThumbPicture(item.cover.thumb || item.cover.src, item.cover.src, item.project.title, item.cover.width, item.cover.height, '(max-width: 389px) 44vw, 130px', 'eager')}
       </button>
     `).join('');
 
@@ -288,13 +365,24 @@
     const item = heroFeaturedItems[heroCurrentIdx];
     if (!item) return;
     const img = document.getElementById('heroMainImg');
+    const webpSource = document.getElementById('heroMainWebpSource');
     const titleEl = document.getElementById('heroFeaturedTitle');
     const metaEl = document.getElementById('heroFeaturedMeta');
     const linkEl = document.getElementById('heroDossierLink');
 
+    if (webpSource) {
+      const thumb400 = to400Webp(item.cover.thumb || '');
+      const fullWebp = toWebp(item.cover.src);
+      const w = Number(item.cover.width) || 1280;
+      webpSource.srcset = thumb400
+        ? `${thumb400} 400w, ${fullWebp} ${w}w`
+        : `${fullWebp} ${w}w`;
+    }
     if (img) {
       img.src = item.cover.src;
-      img.alt = item.project.title;
+      img.alt = item.cover.alt || item.project.title;
+      if (item.cover.width) img.width = item.cover.width;
+      if (item.cover.height) img.height = item.cover.height;
       if (item.cover.lqip) img.style.backgroundImage = `url("${item.cover.lqip}")`;
     }
     if (titleEl) titleEl.textContent = localizedText(item.project.title, item.project.titleTh);
@@ -375,7 +463,7 @@
       return `
         <article class="art-card ${wideClass} reveal is-revealed">
           <div class="art-thumb-wrap" data-lb-idx="${idx}" style="${bgStyle}" tabindex="0" role="button" aria-label="${esc(localizedText(item.label, item.labelTh))}">
-            <img src="${esc(item.thumb || item.src)}" alt="${esc(item.alt)}" width="${esc(item.width)}" height="${esc(item.height)}" loading="lazy" decoding="async" />
+            ${renderThumbPicture(item.thumb || item.src, item.src, item.alt || localizedText(item.label, item.labelTh), item.width, item.height, '(max-width: 767px) 92vw, (max-width: 1023px) 46vw, 410px', 'lazy')}
             <span class="hover-sticker">${esc(t('inspectSticker'))}</span>
           </div>
           <div class="art-card-body">
@@ -484,10 +572,10 @@
       <article class="ba-card">
         <div class="ba-slider" role="slider" tabindex="0" aria-label="${esc(title)} comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
           <div class="ba-layer-after">
-            <img src="${esc(pair.afterThumb || pair.afterSrc)}" alt="${esc(pair.title)} ${esc(pair.afterLabel)}" width="${esc(pair.width)}" height="${esc(pair.height)}" loading="lazy" decoding="async" />
+            ${renderThumbPicture(pair.afterThumb || pair.afterSrc, pair.afterSrc, `${pair.title} ${pair.afterLabel}`, pair.width, pair.height, '(max-width: 767px) 90vw, 590px', 'lazy')}
           </div>
           <div class="ba-layer-before">
-            <img src="${esc(pair.beforeThumb || pair.beforeSrc)}" alt="${esc(pair.title)} ${esc(pair.beforeLabel)}" width="${esc(pair.width)}" height="${esc(pair.height)}" loading="lazy" decoding="async" />
+            ${renderThumbPicture(pair.beforeThumb || pair.beforeSrc, pair.beforeSrc, `${pair.title} ${pair.beforeLabel}`, pair.width, pair.height, '(max-width: 767px) 90vw, 590px', 'lazy')}
           </div>
           <span class="ba-tag ba-tag--before">${esc(pair.beforeLabel)}</span>
           <span class="ba-tag ba-tag--after">${esc(pair.afterLabel)}</span>
@@ -528,8 +616,37 @@
     if (pipeBlock) pipeBlock.style.display = state.wfTab === 'sliders' ? 'none' : 'block';
 
     if (baHost) {
-      baHost.innerHTML = DATA.beforeAfterPairs.map(renderBeforeAfterCardMarkup).join('');
+      const visibleBa = DATA.beforeAfterPairs.slice(0, state.baLimit);
+      baHost.innerHTML = visibleBa.map(renderBeforeAfterCardMarkup).join('');
       baHost.querySelectorAll('.ba-slider').forEach(wireBeforeAfterSlider);
+
+      const baMoreWrap = document.getElementById('baLoadMoreWrap');
+      if (baMoreWrap) {
+        const remBa = DATA.beforeAfterPairs.length - visibleBa.length;
+        if (remBa > 0) {
+          const nextBa = Math.min(6, remBa);
+          baMoreWrap.innerHTML = `
+            <button id="btnLoadMoreBa" type="button" class="btn-load-more">
+              ${esc(state.lang === 'th' ? `โหลดสไลเดอร์เพิ่ม +${nextBa} (เหลือ ${remBa})` : `LOAD MORE +${nextBa} (${remBa} REMAINING)`)}
+            </button>
+            <button id="btnShowAllBa" type="button" class="filter-btn">
+              ${esc(state.lang === 'th' ? `แสดงครบ ${DATA.beforeAfterPairs.length} คู่` : `SHOW ALL ${DATA.beforeAfterPairs.length}`)}
+            </button>
+          `;
+          document.getElementById('btnLoadMoreBa')?.addEventListener('click', () => {
+            state.baLimit += 6;
+            renderUnifiedWorkflow();
+          });
+          document.getElementById('btnShowAllBa')?.addEventListener('click', () => {
+            state.baLimit = DATA.beforeAfterPairs.length;
+            renderUnifiedWorkflow();
+          });
+        } else if (DATA.beforeAfterPairs.length > 6) {
+          baMoreWrap.innerHTML = `<span class="art-dim-badge">${esc(state.lang === 'th' ? `แสดงครบทั้ง ${DATA.beforeAfterPairs.length} คู่แล้ว` : `SHOWING ALL ${DATA.beforeAfterPairs.length} SLIDERS`)}</span>`;
+        } else {
+          baMoreWrap.innerHTML = '';
+        }
+      }
     }
 
     if (stepBar) {
@@ -574,7 +691,7 @@
               ${item.isGif ? '<span class="wf-gif-badge">ANIMATED GIF</span>' : `<span class="art-dim-badge">${esc(item.width)}&times;${esc(item.height)}</span>`}
             </div>
             <div class="art-thumb-wrap" data-wf-idx="${idx}" style="${bgStyle}" tabindex="0" role="button" aria-label="${esc(localizedText(item.label, item.labelTh))}">
-              <img src="${esc(item.isGif ? item.src : (item.thumb || item.src))}" alt="${esc(item.alt)}" width="${esc(item.width)}" height="${esc(item.height)}" loading="lazy" decoding="async" />
+              ${renderThumbPicture(item.thumb || item.src, item.src, item.alt || localizedText(item.label, item.labelTh), item.width, item.height, '(max-width: 767px) 92vw, (max-width: 1023px) 46vw, 410px', 'lazy')}
               <span class="hover-sticker">${esc(t('inspectSticker'))}</span>
             </div>
             <div class="art-card-body">
@@ -650,7 +767,7 @@
     if (motionVideoObserver) motionVideoObserver.disconnect();
     if (!prev) return;
     const vid = prev.querySelector('video');
-    const posterImg = prev.querySelector('img[data-poster-img]');
+    const posterPic = prev.querySelector('picture') || prev.querySelector('img[data-poster-img]');
     const playPill = prev.querySelector('.motion-play-pill');
     if (vid) {
       vid.pause();
@@ -658,7 +775,7 @@
       vid.load();
       vid.remove();
     }
-    if (posterImg) posterImg.style.display = 'block';
+    if (posterPic) posterPic.style.display = 'block';
     if (playPill) playPill.style.display = 'inline-flex';
     state.activeInlineVideoCard = null;
   }
@@ -668,7 +785,7 @@
     return `
       <article class="motion-card" data-clip-id="${esc(clip.id)}">
         <div class="motion-stage" style="${bgStyle}">
-          <img data-poster-img src="${esc(clip.thumb || clip.poster)}" alt="${esc(clip.alt)}" width="${esc(clip.width)}" height="${esc(clip.height)}" loading="lazy" decoding="async" />
+          ${renderThumbPicture(clip.thumb || clip.poster, clip.poster, clip.alt, clip.width, clip.height, '(max-width: 767px) 92vw, (max-width: 1023px) 46vw, 410px', 'lazy', 'data-poster-img')}
           <span class="motion-play-pill">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             ${esc(t('playInline'))}
@@ -698,14 +815,14 @@
         if (state.activeInlineVideoCard === stage) return;
         stopActiveInlineVideo();
 
-        const posterImg = stage.querySelector('img[data-poster-img]');
+        const posterPic = stage.querySelector('picture') || stage.querySelector('img[data-poster-img]');
         const playPill = stage.querySelector('.motion-play-pill');
-        if (posterImg) posterImg.style.display = 'none';
+        if (posterPic) posterPic.style.display = 'none';
         if (playPill) playPill.style.display = 'none';
 
         const video = document.createElement('video');
         video.src = clip.src;
-        video.poster = clip.poster;
+        video.poster = toWebp(clip.poster);
         video.muted = true;
         video.loop = true;
         video.playsInline = true;
@@ -768,7 +885,7 @@
       return `
         <a href="#/work/${esc(proj.slug)}" class="dossier-card" style="--card-accent:${esc(proj.accent || '#FF1FA2')};">
           <div class="dossier-cover">
-            <img src="${esc(cov.thumb || cov.src || '')}" alt="${esc(cov.alt || proj.title)}" width="${esc(cov.width || 800)}" height="${esc(cov.height || 450)}" loading="lazy" decoding="async" />
+            ${renderThumbPicture(cov.thumb || cov.src || '', cov.src || '', cov.alt || proj.title, cov.width || 800, cov.height || 450, '(max-width: 767px) 92vw, (max-width: 1023px) 46vw, 310px', 'lazy')}
             <div class="dossier-counts">
               ${rCount ? `<span class="dossier-count-chip">${rCount} Renders</span>` : ''}
               ${wCount ? `<span class="dossier-count-chip">${wCount} Workflow</span>` : ''}
@@ -835,7 +952,10 @@
       <div class="detail-hero-grid">
         <div class="hero-poster-wrap" style="box-shadow:8px 8px 0 ${esc(proj.accent || '#FF1FA2')};">
           <div class="hero-stage" id="detailHeroImgWrap">
-            <img src="${esc(heroMedia ? heroMedia.src : '')}" alt="${esc(proj.title)}" />
+            ${heroMedia ? `<picture>
+              <source type="image/webp" srcset="${esc(heroMedia.thumb ? `${to400Webp(heroMedia.thumb)} 400w, ${toWebp(heroMedia.src)} ${heroMedia.width || 1280}w` : `${toWebp(heroMedia.src)} ${heroMedia.width || 1280}w`)}" sizes="(max-width: 1023px) 92vw, 760px" />
+              <img src="${esc(heroMedia.src)}" alt="${esc(heroMedia.alt || proj.title)}" width="${esc(heroMedia.width || 1280)}" height="${esc(heroMedia.height || 720)}" decoding="async" fetchpriority="high" />
+            </picture>` : ''}
           </div>
           <p style="margin:14px 4px 4px;color:var(--ink-muted);line-height:1.7;">${highlightTodo(localizedText(proj.description, proj.descriptionTh))}</p>
         </div>
@@ -864,7 +984,7 @@
           ${proj.renders.map((r, i) => `
             <article class="art-card">
               <div class="art-thumb-wrap" data-det-r="${i}" tabindex="0" role="button">
-                <img src="${esc(r.thumb || r.src)}" alt="${esc(r.alt)}" width="${esc(r.width)}" height="${esc(r.height)}" loading="lazy" decoding="async" />
+                ${renderThumbPicture(r.thumb || r.src, r.src, r.alt || localizedText(r.label, r.labelTh), r.width, r.height, '(max-width: 767px) 92vw, (max-width: 1023px) 46vw, 410px', 'lazy')}
                 <span class="hover-sticker">${esc(t('inspectSticker'))}</span>
               </div>
               <div class="art-card-body">
@@ -886,7 +1006,8 @@
                 ${w.isGif ? '<span class="wf-gif-badge">GIF</span>' : `<span class="art-dim-badge">${esc(w.width)}&times;${esc(w.height)}</span>`}
               </div>
               <div class="art-thumb-wrap" data-det-w="${i}" tabindex="0" role="button">
-                <img src="${esc(w.isGif ? w.src : (w.thumb || w.src))}" alt="${esc(w.alt)}" width="${esc(w.width)}" height="${esc(w.height)}" loading="lazy" decoding="async" />
+                ${renderThumbPicture(w.thumb || w.src, w.src, w.alt || localizedText(w.label, w.labelTh), w.width, w.height, '(max-width: 767px) 92vw, (max-width: 1023px) 46vw, 410px', 'lazy')}
+                <span class="hover-sticker">${esc(t('inspectSticker'))}</span>
               </div>
               <h3 class="art-title">${esc(localizedText(w.label, w.labelTh))}</h3>
             </article>
@@ -988,7 +1109,12 @@
 
     if (img) {
       img.classList.remove('is-zoomed');
-      img.src = item.src;
+      const preferred = toWebp(item.src);
+      img.onerror = () => {
+        img.onerror = null;
+        if (item.src) img.src = item.src;
+      };
+      img.src = preferred || item.src;
       img.alt = item.alt || item.label || '';
     }
     if (title) title.textContent = localizedText(item.label, item.labelTh);
@@ -1042,7 +1168,7 @@
     }
 
     if (video) {
-      video.poster = clip.poster;
+      video.poster = toWebp(clip.poster);
       video.src = clip.src;
       video.loop = true;
       video.playbackRate = 1.0;
