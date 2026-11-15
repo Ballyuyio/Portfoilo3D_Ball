@@ -55,9 +55,9 @@
 
 ### สถิติล่าสุดที่ตรวจสอบแล้ว (`data/asset-report.json`):
 - **Projects**: `30`
-- **Renders**: `140`
-- **Workflow Breakdowns**: `54` (รวม Animated Wireframe GIF 2 ไฟล์: `Chibi_bluelock.0.gif`, `Kaiwa.0.gif`)
-- **Before/After Sliders**: `19` คู่ (มุมกล้องตรงกัน)
+- **Renders**: `119` (คัดกรองรูปซ้ำและคุณภาพต่ำออก 21 รูป ย้ายสำรองไว้ที่ `_removed/`)
+- **Workflow Breakdowns**: `53` (รวม Animated Wireframe GIF 2 ไฟล์: `Chibi_bluelock.0.gif`, `Kaiwa.0.gif`)
+- **Before/After Sliders**: `19` คู่ (มุมกล้องตรงกัน 100%)
 - **Animations (Playable H.264 MP4)**: `26` คลิป แยกเป็น **`5` Motion Groups** (`golem-combat`, `hooded-hunter`, `furry-guardian`, `chibi-cutscenes`, `vehicles-prototypes`)
 - **Skipped Exact MD5 Duplicates (`3`)**: `67120501057_pers.png`, `workflowimage/Chibi_bluelock.-1.gif`, `workflowimage/Versy650.1.jpg`
 - **Skipped Render-Farm PNG Frame Sequences (`1,680` PNGs)**: `labroom_vedio/AungChibi/*.png`, `labroom_vedio/FinalAnima/*.png`, `labroom_vedio/FinalAnima/New folder/*.png`, `labroom_vedio/LED_BULB/*.png`, `labroom_vedio/Submarine/*.png`

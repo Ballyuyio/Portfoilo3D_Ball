@@ -1,0 +1,1877 @@
+[
+  {
+    "slug": "stone-crystal-golem",
+    "title": "Crystal Stone Golem",
+    "rendersCount": 1,
+    "wfCount": 3,
+    "baCount": 1,
+    "renders": [
+      {
+        "src": "./public/assets/renders/stone-crystal-golem/golem-clay-beauty.png",
+        "label": "Crystal Stone Golem (Sculpt Beauty)",
+        "dim": "987x766",
+        "sizeKB": 321.9,
+        "sharpness": 410.8,
+        "brightness": 55.6
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/stone-crystal-golem/01-retopo-wireframe.png",
+        "label": "Golem Low-Poly Red Wireframe (Matched Angle)",
+        "dim": "860x692",
+        "sizeKB": 357.1,
+        "sharpness": 385.2,
+        "brightness": 60.7
+      },
+      {
+        "src": "./public/assets/workflow/stone-crystal-golem/02-maya-textured-viewport.png",
+        "label": "Maya Viewport — 6,954 Tris Moss & Crystal Shader",
+        "dim": "1654x906",
+        "sizeKB": 362.1,
+        "sharpness": 538.1,
+        "brightness": 79.1
+      },
+      {
+        "src": "./public/assets/workflow/stone-crystal-golem/03-ik-fk-rig-controls.png",
+        "label": "Maya Outliner & NURBS Hand/Foot Control Rig",
+        "dim": "1917x892",
+        "sizeKB": 327.2,
+        "sharpness": 655.4,
+        "brightness": 76.9
+      }
+    ]
+  },
+  {
+    "slug": "graffiti-submarine",
+    "title": "Street Graffiti Submarine",
+    "rendersCount": 3,
+    "wfCount": 1,
+    "baCount": 1,
+    "renders": [
+      {
+        "src": "./public/assets/renders/graffiti-submarine/01-submarine-hero.png",
+        "label": "Graffiti Submarine — Starboard Side",
+        "dim": "833x675",
+        "sizeKB": 658.7,
+        "sharpness": 279.2,
+        "brightness": 87.7
+      },
+      {
+        "src": "./public/assets/renders/graffiti-submarine/02-submarine-three-quarter.png",
+        "label": "Graffiti Submarine — Three-Quarter View",
+        "dim": "833x654",
+        "sizeKB": 754.9,
+        "sharpness": 353.8,
+        "brightness": 110.5
+      },
+      {
+        "src": "./public/assets/renders/graffiti-submarine/03-submarine-stern.png",
+        "label": "Graffiti Submarine — Thruster & Stern",
+        "dim": "836x710",
+        "sizeKB": 681.6,
+        "sharpness": 216.1,
+        "brightness": 79.1
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/graffiti-submarine/01-split-wireframe-breakdown.png",
+        "label": "Split Render vs Quad Topology Wireframe",
+        "dim": "838x767",
+        "sizeKB": 887.1,
+        "sharpness": 324.4,
+        "brightness": 72.2
+      }
+    ]
+  },
+  {
+    "slug": "hooded-hunter-game-pack",
+    "title": "Hooded Hunter & Slime RPG Pack",
+    "rendersCount": 2,
+    "wfCount": 6,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/hooded-hunter-game-pack/01-game-pack-showcase.png",
+        "label": "Fantasy Game Asset Pack Lineup (Hunter, Slimes, Crystals)",
+        "dim": "1917x803",
+        "sizeKB": 585.4,
+        "sharpness": 1666.5,
+        "brightness": 129.3
+      },
+      {
+        "src": "./public/assets/renders/hooded-hunter-game-pack/02-elemental-slimes-group.png",
+        "label": "Five Elemental Slimes — Final Shading",
+        "dim": "1915x791",
+        "sizeKB": 236.9,
+        "sharpness": 972.3,
+        "brightness": 146.6
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/hooded-hunter-game-pack/01-unity-scene-integration.png",
+        "label": "Unity Editor — Asset Prefab Alignment",
+        "dim": "1918x914",
+        "sizeKB": 298.7,
+        "sharpness": 867.3,
+        "brightness": 105.7
+      },
+      {
+        "src": "./public/assets/workflow/hooded-hunter-game-pack/02-unity-slime-prefabs.png",
+        "label": "Unity Editor — Elemental Slime Scale Check",
+        "dim": "1170x919",
+        "sizeKB": 206.9,
+        "sharpness": 960.9,
+        "brightness": 134.8
+      },
+      {
+        "src": "./public/assets/workflow/hooded-hunter-game-pack/03-hunter-body-curves.png",
+        "label": "Maya AdvancedSkeleton — Root & Body Controls (3,886 Tris)",
+        "dim": "1919x1079",
+        "sizeKB": 366.6,
+        "sharpness": 994.2,
+        "brightness": 77.4
+      },
+      {
+        "src": "./public/assets/workflow/hooded-hunter-game-pack/04-hunter-rig-pose.png",
+        "label": "Maya Rig — Control Handles Test 01",
+        "dim": "1057x761",
+        "sizeKB": 162.9,
+        "sharpness": 907.2,
+        "brightness": 89.4
+      },
+      {
+        "src": "./public/assets/workflow/hooded-hunter-game-pack/05-hunter-rig-ik.png",
+        "label": "Maya Rig — Deformation & Weight Test 02",
+        "dim": "1078x767",
+        "sizeKB": 178.7,
+        "sharpness": 910,
+        "brightness": 88.7
+      },
+      {
+        "src": "./public/assets/workflow/hooded-hunter-game-pack/06-hunter-rig-three-quarter.png",
+        "label": "Maya Rig — Three-Quarter Full Rig",
+        "dim": "1288x798",
+        "sizeKB": 166.4,
+        "sharpness": 903.4,
+        "brightness": 87.8
+      }
+    ]
+  },
+  {
+    "slug": "furry-guardian",
+    "title": "Furry Guardian — Mobile Action Hero",
+    "rendersCount": 3,
+    "wfCount": 1,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/furry-guardian/01-furry-hero-sword.jpg",
+        "label": "Furry Guardian — Rim-Lit Sword Pose",
+        "dim": "1920x1080",
+        "sizeKB": 1106,
+        "sharpness": 1370.5,
+        "brightness": 55.8
+      },
+      {
+        "src": "./public/assets/renders/furry-guardian/02-furry-side-blade.jpg",
+        "label": "Furry Guardian — Golden Blade Glow",
+        "dim": "1920x1080",
+        "sizeKB": 1067.2,
+        "sharpness": 1244.8,
+        "brightness": 65.6
+      },
+      {
+        "src": "./public/assets/renders/furry-guardian/03-furry-dramatic-key.jpg",
+        "label": "Furry Guardian — Studio Profile",
+        "dim": "1920x1080",
+        "sizeKB": 1158.4,
+        "sharpness": 1370.9,
+        "brightness": 70.6
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/furry-guardian/01-nurbs-rig-controls.png",
+        "label": "Maya Viewport — 9,196 Tris Quadruped & Tail NURBS Rig",
+        "dim": "1818x837",
+        "sizeKB": 269.6,
+        "sharpness": 879.3,
+        "brightness": 89.4
+      }
+    ]
+  },
+  {
+    "slug": "chibi-crusader-knight",
+    "title": "Chibi Crusader Knight & Spiked Flail",
+    "rendersCount": 2,
+    "wfCount": 2,
+    "baCount": 1,
+    "renders": [
+      {
+        "src": "./public/assets/renders/chibi-crusader-knight/01-crusader-knight-hero.png",
+        "label": "Chibi Crusader Knight (src: knifeAung.png)",
+        "dim": "802x715",
+        "sizeKB": 571.1,
+        "sharpness": 160.3,
+        "brightness": 93
+      },
+      {
+        "src": "./public/assets/renders/chibi-crusader-knight/02-spiked-flail-beauty.png",
+        "label": "Weather-Beaten Spiked Flail (Matched Weapon)",
+        "dim": "751x813",
+        "sizeKB": 436.5,
+        "sharpness": 62.1,
+        "brightness": 46.5
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/chibi-crusader-knight/01-flail-wireframe.png",
+        "label": "Spiked Flail & Chain Wireframe Topology",
+        "dim": "818x800",
+        "sizeKB": 484.9,
+        "sharpness": 265.9,
+        "brightness": 48.1
+      },
+      {
+        "src": "./public/assets/workflow/chibi-crusader-knight/02-knight-substance-wireframe.png",
+        "label": "Substance / Marmoset — Knight Armor Wireframe",
+        "dim": "892x765",
+        "sizeKB": 734.3,
+        "sharpness": 554.3,
+        "brightness": 96.6
+      }
+    ]
+  },
+  {
+    "slug": "cloud-strife-chibi",
+    "title": "Cloud Strife Chibi & Boss Arena",
+    "rendersCount": 11,
+    "wfCount": 0,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/cloud-strife-chibi/01-cloud-hero-buster-sword.jpg",
+        "label": "Cloud Strife Chibi — Hero Stance",
+        "dim": "1920x1080",
+        "sizeKB": 248.9,
+        "sharpness": 585.3,
+        "brightness": 71.9
+      },
+      {
+        "src": "./public/assets/renders/cloud-strife-chibi/02-cloud-action-angle.jpg",
+        "label": "Cloud Chibi — Dramatic Angle 01",
+        "dim": "1920x1080",
+        "sizeKB": 926.9,
+        "sharpness": 1121.5,
+        "brightness": 118.6
+      },
+      {
+        "src": "./public/assets/renders/cloud-strife-chibi/03-cloud-portrait-light.jpg",
+        "label": "Cloud Chibi — Portrait Glow 02",
+        "dim": "1920x1080",
+        "sizeKB": 1031.1,
+        "sharpness": 1163,
+        "brightness": 97.9
+      },
+      {
+        "src": "./public/assets/renders/cloud-strife-chibi/04-cloud-side-armor.jpg",
+        "label": "Cloud Chibi — Pauldron Detail 03",
+        "dim": "1920x1080",
+        "sizeKB": 998.3,
+        "sharpness": 1453.2,
+        "brightness": 127
+      },
+      {
+        "src": "./public/assets/renders/cloud-strife-chibi/05-cloud-back-view.jpg",
+        "label": "Cloud Chibi — Rear Silhouette 04",
+        "dim": "1920x1080",
+        "sizeKB": 966.9,
+        "sharpness": 988.9,
+        "brightness": 100.9
+      },
+      {
+        "src": "./public/assets/renders/cloud-strife-chibi/06-cloud-rim-light-05.jpg",
+        "label": "Cloud Chibi — Rim Lighting 05",
+        "dim": "1920x1080",
+        "sizeKB": 885,
+        "sharpness": 813.7,
+        "brightness": 93.9
+      },
+      {
+        "src": "./public/assets/renders/cloud-strife-chibi/07-cloud-rim-light-06.jpg",
+        "label": "Cloud Chibi — Low Camera 06",
+        "dim": "1920x1080",
+        "sizeKB": 859.4,
+        "sharpness": 1033.8,
+        "brightness": 132.8
+      },
+      {
+        "src": "./public/assets/renders/cloud-strife-chibi/08-cloud-studio-pass-01.jpg",
+        "label": "Cloud Chibi — Studio Shot 01",
+        "dim": "1920x1080",
+        "sizeKB": 467.1,
+        "sharpness": 83.6,
+        "brightness": 13.7
+      },
+      {
+        "src": "./public/assets/renders/cloud-strife-chibi/09-cloud-studio-pass-02.jpg",
+        "label": "Cloud Chibi — Studio Shot 02",
+        "dim": "1920x1080",
+        "sizeKB": 933.8,
+        "sharpness": 1310.2,
+        "brightness": 80.1
+      },
+      {
+        "src": "./public/assets/renders/cloud-strife-chibi/10-cloud-studio-pass-03.jpg",
+        "label": "Cloud Chibi — Studio Shot 03",
+        "dim": "1920x1080",
+        "sizeKB": 949.2,
+        "sharpness": 1223.5,
+        "brightness": 84.7
+      },
+      {
+        "src": "./public/assets/renders/cloud-strife-chibi/11-cloud-studio-pass-04.jpg",
+        "label": "Cloud Chibi — Studio Shot 04",
+        "dim": "1920x1080",
+        "sizeKB": 958,
+        "sharpness": 1261.1,
+        "brightness": 87.4
+      }
+    ],
+    "workflow": []
+  },
+  {
+    "slug": "sephiroth-chibi",
+    "title": "Sephiroth Chibi",
+    "rendersCount": 5,
+    "wfCount": 1,
+    "baCount": 1,
+    "renders": [
+      {
+        "src": "./public/assets/renders/sephiroth-chibi/01-sephiroth-hero.jpg",
+        "label": "Sephiroth Chibi — Front Lookdev",
+        "dim": "1920x1080",
+        "sizeKB": 226.2,
+        "sharpness": 193.5,
+        "brightness": 127.9
+      },
+      {
+        "src": "./public/assets/renders/sephiroth-chibi/02-sephiroth-coat-flow.jpg",
+        "label": "Sephiroth Chibi — Coat Three-Quarter",
+        "dim": "1920x1080",
+        "sizeKB": 238.7,
+        "sharpness": 196.8,
+        "brightness": 122
+      },
+      {
+        "src": "./public/assets/renders/sephiroth-chibi/03-sephiroth-side.jpg",
+        "label": "Sephiroth Chibi — Side Profile",
+        "dim": "1920x1080",
+        "sizeKB": 225.7,
+        "sharpness": 192.4,
+        "brightness": 106.7
+      },
+      {
+        "src": "./public/assets/renders/sephiroth-chibi/04-sephiroth-back.jpg",
+        "label": "Sephiroth Chibi — Silver Hair Back",
+        "dim": "1920x1080",
+        "sizeKB": 337.4,
+        "sharpness": 290,
+        "brightness": 120.8
+      },
+      {
+        "src": "./public/assets/renders/sephiroth-chibi/05-sephiroth-closeup.jpg",
+        "label": "Sephiroth Chibi — Rim Detail",
+        "dim": "1920x1080",
+        "sizeKB": 286.9,
+        "sharpness": 407.6,
+        "brightness": 105
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/sephiroth-chibi/01-sephiroth-wireframe.png",
+        "label": "Sephiroth Chibi Wireframe (Matched Camera)",
+        "dim": "1308x704",
+        "sizeKB": 167.8,
+        "sharpness": 397.2,
+        "brightness": 89.9
+      }
+    ]
+  },
+  {
+    "slug": "motorcycle-series",
+    "title": "Kawasaki ZH2 & Versys 650",
+    "rendersCount": 4,
+    "wfCount": 3,
+    "baCount": 2,
+    "renders": [
+      {
+        "src": "./public/assets/renders/motorcycle-series/01-kawasaki-zh2-painted.jpg",
+        "label": "Kawasaki ZH2 — Metallic Emerald Paint Render",
+        "dim": "1920x1080",
+        "sizeKB": 193.1,
+        "sharpness": 387.9,
+        "brightness": 10.8
+      },
+      {
+        "src": "./public/assets/renders/motorcycle-series/02-kawasaki-zh2-front.jpg",
+        "label": "Kawasaki ZH2 — Aggro Front Cowl",
+        "dim": "1920x1080",
+        "sizeKB": 75.5,
+        "sharpness": 119.7,
+        "brightness": 2.4
+      },
+      {
+        "src": "./public/assets/renders/motorcycle-series/03-versys-650-side.jpg",
+        "label": "Kawasaki Versys 650 — Touring Trim",
+        "dim": "1920x1080",
+        "sizeKB": 315.2,
+        "sharpness": 439.8,
+        "brightness": 82
+      },
+      {
+        "src": "./public/assets/renders/motorcycle-series/04-versys-650-angle.jpg",
+        "label": "Kawasaki Versys 650 — Rim Angle",
+        "dim": "1920x1080",
+        "sizeKB": 315.3,
+        "sharpness": 400.7,
+        "brightness": 76.2
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/motorcycle-series/01-zh2-clay-render.jpg",
+        "label": "Kawasaki ZH2 — Gray Clay Mechanical Sculpt",
+        "dim": "1920x1080",
+        "sizeKB": 146.1,
+        "sharpness": 198.6,
+        "brightness": 193.1
+      },
+      {
+        "src": "./public/assets/workflow/motorcycle-series/02-zh2-maya-viewport.png",
+        "label": "Maya Dual Viewport — 186,374 Tris Arnold Lookdev",
+        "dim": "1919x989",
+        "sizeKB": 629.6,
+        "sharpness": 1432.1,
+        "brightness": 64.1
+      },
+      {
+        "src": "./public/assets/workflow/motorcycle-series/03-versys-650-wireframe.jpg",
+        "label": "Versys 650 Full Chassis Wireframe Overlay",
+        "dim": "1920x1080",
+        "sizeKB": 652.5,
+        "sharpness": 1431.4,
+        "brightness": 95.9
+      }
+    ]
+  },
+  {
+    "slug": "toji-fushiguro",
+    "title": "Toji Fushiguro — Stylized & Chibi",
+    "rendersCount": 6,
+    "wfCount": 1,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/toji-fushiguro/01-toji-hero-front.jpg",
+        "label": "Toji Fushiguro — Anatomy Hero (src: Gojo.jpg)",
+        "dim": "1920x1080",
+        "sizeKB": 116.7,
+        "sharpness": 98.4,
+        "brightness": 70
+      },
+      {
+        "src": "./public/assets/renders/toji-fushiguro/02-toji-side-torso.jpg",
+        "label": "Toji Fushiguro — Side Torso (src: Gojo1.jpg)",
+        "dim": "1920x1080",
+        "sizeKB": 103.1,
+        "sharpness": 78.6,
+        "brightness": 66.4
+      },
+      {
+        "src": "./public/assets/renders/toji-fushiguro/03-toji-back-musculature.jpg",
+        "label": "Toji Fushiguro — Back Muscles (src: Gojo2.jpg)",
+        "dim": "1920x1080",
+        "sizeKB": 158.7,
+        "sharpness": 123.9,
+        "brightness": 93.8
+      },
+      {
+        "src": "./public/assets/renders/toji-fushiguro/04-toji-dramatic-rim.jpg",
+        "label": "Toji Fushiguro — Dramatic Portrait",
+        "dim": "1920x1080",
+        "sizeKB": 146.3,
+        "sharpness": 115.6,
+        "brightness": 87.8
+      },
+      {
+        "src": "./public/assets/renders/toji-fushiguro/05-toji-three-quarter.jpg",
+        "label": "Toji Fushiguro — Three-Quarter Turn",
+        "dim": "1920x1080",
+        "sizeKB": 107.8,
+        "sharpness": 87.4,
+        "brightness": 87.2
+      },
+      {
+        "src": "./public/assets/renders/toji-fushiguro/06-toji-chibi-edition.jpg",
+        "label": "Toji Fushiguro — Stylized Chibi Version",
+        "dim": "1920x1080",
+        "sizeKB": 75.5,
+        "sharpness": 181.4,
+        "brightness": 196
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/toji-fushiguro/01-toji-maya-wireframe-rig.png",
+        "label": "Maya Viewport — Full-Body Topology & Skeleton",
+        "dim": "1245x818",
+        "sizeKB": 105.8,
+        "sharpness": 324.4,
+        "brightness": 87
+      }
+    ]
+  },
+  {
+    "slug": "horror-operating-lab",
+    "title": "Abandoned Operating Theater",
+    "rendersCount": 4,
+    "wfCount": 1,
+    "baCount": 1,
+    "renders": [
+      {
+        "src": "./public/assets/renders/horror-operating-lab/01-operating-lab-hero.jpg",
+        "label": "Horror Operating Lab — Full Cutaway",
+        "dim": "1920x1080",
+        "sizeKB": 179.6,
+        "sharpness": 311.4,
+        "brightness": 23.7
+      },
+      {
+        "src": "./public/assets/renders/horror-operating-lab/02-operating-table-closeup.jpg",
+        "label": "Surgical Lamps & Operating Table Detail",
+        "dim": "1920x1080",
+        "sizeKB": 203.8,
+        "sharpness": 305.1,
+        "brightness": 24.4
+      },
+      {
+        "src": "./public/assets/renders/horror-operating-lab/03-wall-cables-monitors.jpg",
+        "label": "Industrial Wall Wiring & Control Carts",
+        "dim": "1920x1080",
+        "sizeKB": 373.9,
+        "sharpness": 398.6,
+        "brightness": 26.7
+      },
+      {
+        "src": "./public/assets/renders/horror-operating-lab/04-dark-mood-alternate.jpg",
+        "label": "Low-Key Horror Lighting Pass",
+        "dim": "1920x1080",
+        "sizeKB": 371.9,
+        "sharpness": 473.5,
+        "brightness": 29.5
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/horror-operating-lab/01-maya-scene-wireframe.png",
+        "label": "Maya Viewport — 95,348 Tris Full Scene Wireframe",
+        "dim": "1908x949",
+        "sizeKB": 667.8,
+        "sharpness": 849.7,
+        "brightness": 57
+      }
+    ]
+  },
+  {
+    "slug": "combat-weapons-arsenal",
+    "title": "Tactical & Fantasy Weapon Arsenal",
+    "rendersCount": 11,
+    "wfCount": 7,
+    "baCount": 5,
+    "renders": [
+      {
+        "src": "./public/assets/renders/combat-weapons-arsenal/01-tactical-hatchet-side.jpg",
+        "label": "Tactical Hatchet — Side PBR",
+        "dim": "1920x1080",
+        "sizeKB": 251,
+        "sharpness": 52.5,
+        "brightness": 124.6
+      },
+      {
+        "src": "./public/assets/renders/combat-weapons-arsenal/02-tactical-hatchet-iso.jpg",
+        "label": "Tactical Hatchet — Isometric View",
+        "dim": "1920x1080",
+        "sizeKB": 253.6,
+        "sharpness": 122.5,
+        "brightness": 110.9
+      },
+      {
+        "src": "./public/assets/renders/combat-weapons-arsenal/03-karambit-blade.png",
+        "label": "Karambit Combat Knife",
+        "dim": "904x776",
+        "sizeKB": 90.3,
+        "sharpness": 86.4,
+        "brightness": 42.7
+      },
+      {
+        "src": "./public/assets/renders/combat-weapons-arsenal/04-silenced-tactical-pistol.png",
+        "label": "Silenced Tactical Pistol (src: Screenshot 01-11)",
+        "dim": "1920x1080",
+        "sizeKB": 309.3,
+        "sharpness": 259.7,
+        "brightness": 193.6
+      },
+      {
+        "src": "./public/assets/renders/combat-weapons-arsenal/05-flintlock-blunderbuss-left.jpg",
+        "label": "Engraved Flintlock Blunderbuss",
+        "dim": "1920x1080",
+        "sizeKB": 292.5,
+        "sharpness": 238.6,
+        "brightness": 100.1
+      },
+      {
+        "src": "./public/assets/renders/combat-weapons-arsenal/06-flintlock-blunderbuss-right.jpg",
+        "label": "Flintlock Blunderbuss — Reverse Lock",
+        "dim": "1920x1080",
+        "sizeKB": 285.4,
+        "sharpness": 303.4,
+        "brightness": 117.3
+      },
+      {
+        "src": "./public/assets/renders/combat-weapons-arsenal/07-crusader-kite-shield.png",
+        "label": "Weathered Crusader Kite Shield",
+        "dim": "858x716",
+        "sizeKB": 510,
+        "sharpness": 139.8,
+        "brightness": 90.5
+      },
+      {
+        "src": "./public/assets/renders/combat-weapons-arsenal/08-scifi-lightsaber-hilt.jpg",
+        "label": "Sci-Fi Sith Lightsaber Hilt",
+        "dim": "1920x1080",
+        "sizeKB": 79.1,
+        "sharpness": 81.7,
+        "brightness": 113.6
+      },
+      {
+        "src": "./public/assets/renders/combat-weapons-arsenal/09-chained-chaos-blade.jpg",
+        "label": "Chained Chaos Greatsword",
+        "dim": "1920x1080",
+        "sizeKB": 98.3,
+        "sharpness": 190.3,
+        "brightness": 198.5
+      },
+      {
+        "src": "./public/assets/renders/combat-weapons-arsenal/10-jade-rune-sword.jpg",
+        "label": "Runed Jade Blade & Scabbard",
+        "dim": "960x540",
+        "sizeKB": 26.2,
+        "sharpness": 108.8,
+        "brightness": 200.3
+      },
+      {
+        "src": "./public/assets/renders/combat-weapons-arsenal/11-wrapped-rune-dagger.jpg",
+        "label": "Wrapped Mummy Rune Dagger",
+        "dim": "1920x1080",
+        "sizeKB": 140.4,
+        "sharpness": 283.8,
+        "brightness": 193.6
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/combat-weapons-arsenal/01-hatchet-wireframe.png",
+        "label": "Tactical Hatchet — Blue Wireframe Cage",
+        "dim": "1317x706",
+        "sizeKB": 24.6,
+        "sharpness": 139.9,
+        "brightness": 50
+      },
+      {
+        "src": "./public/assets/workflow/combat-weapons-arsenal/02-hatchet-clay-lighting.png",
+        "label": "Tactical Hatchet — Arnold Gray Clay Pass",
+        "dim": "1317x706",
+        "sizeKB": 28.3,
+        "sharpness": 291.1,
+        "brightness": 46.6
+      },
+      {
+        "src": "./public/assets/workflow/combat-weapons-arsenal/03-hatchet-maya-dual-ui.png",
+        "label": "Maya Dual Viewport — 4,086 Tris Hatchet",
+        "dim": "1905x939",
+        "sizeKB": 250.6,
+        "sharpness": 1025.5,
+        "brightness": 105.8
+      },
+      {
+        "src": "./public/assets/workflow/combat-weapons-arsenal/04-karambit-wireframe.png",
+        "label": "Karambit Knife — Matched Wireframe",
+        "dim": "885x753",
+        "sizeKB": 150.4,
+        "sharpness": 70.7,
+        "brightness": 42.9
+      },
+      {
+        "src": "./public/assets/workflow/combat-weapons-arsenal/05-flintlock-maya-wireframe.png",
+        "label": "Flintlock Pistol — 11,448 Tris Maya HUD",
+        "dim": "1317x706",
+        "sizeKB": 44.8,
+        "sharpness": 2693.1,
+        "brightness": 157
+      },
+      {
+        "src": "./public/assets/workflow/combat-weapons-arsenal/06-shield-wireframe.png",
+        "label": "Crusader Shield — Matched Wireframe",
+        "dim": "797x733",
+        "sizeKB": 517.3,
+        "sharpness": 301.6,
+        "brightness": 93.2
+      },
+      {
+        "src": "./public/assets/workflow/combat-weapons-arsenal/07-lightsaber-maya-viewport.png",
+        "label": "Lightsaber Hilt — 11,644 Tris Maya Viewport",
+        "dim": "1919x832",
+        "sizeKB": 207.3,
+        "sharpness": 728.5,
+        "brightness": 108.5
+      }
+    ]
+  },
+  {
+    "slug": "character-jin",
+    "title": "Jin — Horror Schoolgirl Character",
+    "rendersCount": 3,
+    "wfCount": 1,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/character-jin/01-jin-horror-portrait.jpg",
+        "label": "Jin — Splattered Pink Uniform Front",
+        "dim": "960x540",
+        "sizeKB": 52.9,
+        "sharpness": 447.5,
+        "brightness": 185.3
+      },
+      {
+        "src": "./public/assets/renders/character-jin/02-jin-three-quarter.jpg",
+        "label": "Jin — Three-Quarter Turn",
+        "dim": "960x540",
+        "sizeKB": 55.8,
+        "sharpness": 450.4,
+        "brightness": 182.5
+      },
+      {
+        "src": "./public/assets/renders/character-jin/03-jin-back-hair-buns.jpg",
+        "label": "Jin — Twin Hair Buns Rear",
+        "dim": "1920x1080",
+        "sizeKB": 104.5,
+        "sharpness": 142.8,
+        "brightness": 203.5
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/character-jin/01-jin-rig-wireframe.png",
+        "label": "Maya AdvancedSkeleton Rig (145,032 Tris, src: Mint.png)",
+        "dim": "1919x1024",
+        "sizeKB": 584.1,
+        "sharpness": 1101.7,
+        "brightness": 75.5
+      }
+    ]
+  },
+  {
+    "slug": "character-wich",
+    "title": "Wich — Stylized Campus Girl",
+    "rendersCount": 4,
+    "wfCount": 1,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/character-wich/01-wich-front-tpose.jpg",
+        "label": "Wich — Campus Uniform Front",
+        "dim": "1920x1080",
+        "sizeKB": 340.3,
+        "sharpness": 306.9,
+        "brightness": 66.3
+      },
+      {
+        "src": "./public/assets/renders/character-wich/02-wich-three-quarter.jpg",
+        "label": "Wich — Three-Quarter Profile",
+        "dim": "1920x1080",
+        "sizeKB": 276.9,
+        "sharpness": 80.8,
+        "brightness": 51.6
+      },
+      {
+        "src": "./public/assets/renders/character-wich/03-wich-side-hair.jpg",
+        "label": "Wich — Side Silhouette",
+        "dim": "1920x1080",
+        "sizeKB": 302.3,
+        "sharpness": 113,
+        "brightness": 62.5
+      },
+      {
+        "src": "./public/assets/renders/character-wich/04-wich-rear-skirt.jpg",
+        "label": "Wich — Rear Uniform View",
+        "dim": "1920x1080",
+        "sizeKB": 325,
+        "sharpness": 220.3,
+        "brightness": 69.9
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/character-wich/01-wich-maya-wireframe.png",
+        "label": "Maya Clean Quad Wireframe (29,030 Tris, src: jin.png)",
+        "dim": "1902x898",
+        "sizeKB": 210.1,
+        "sharpness": 841.5,
+        "brightness": 81.7
+      }
+    ]
+  },
+  {
+    "slug": "character-mint",
+    "title": "Mint — Chibi Kimono Maiden",
+    "rendersCount": 5,
+    "wfCount": 1,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/character-mint/01-mint-chibi-hero.jpg",
+        "label": "Mint — Chibi Pose Hero",
+        "dim": "960x540",
+        "sizeKB": 70.9,
+        "sharpness": 223.5,
+        "brightness": 42
+      },
+      {
+        "src": "./public/assets/renders/character-mint/02-mint-front-rigged.jpg",
+        "label": "Mint — Soft Light Pass 01",
+        "dim": "1920x1080",
+        "sizeKB": 240.5,
+        "sharpness": 244.3,
+        "brightness": 41.9
+      },
+      {
+        "src": "./public/assets/renders/character-mint/03-mint-side-bow.jpg",
+        "label": "Mint — Profile & Bow 02",
+        "dim": "1920x1080",
+        "sizeKB": 168.6,
+        "sharpness": 193.8,
+        "brightness": 39.7
+      },
+      {
+        "src": "./public/assets/renders/character-mint/04-mint-rear-kimono.jpg",
+        "label": "Mint — Rear Kimono 03",
+        "dim": "1920x1080",
+        "sizeKB": 151.7,
+        "sharpness": 309.4,
+        "brightness": 40.5
+      },
+      {
+        "src": "./public/assets/renders/character-mint/05-mint-studio-alt.jpg",
+        "label": "Mint — Three-Quarter Turn 04",
+        "dim": "1920x1080",
+        "sizeKB": 269.6,
+        "sharpness": 138.6,
+        "brightness": 42.7
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/character-mint/01-mint-maya-dual-rig.png",
+        "label": "Maya Dual Viewport — 33,240 Tris Wireframe & Clay Rig",
+        "dim": "1330x794",
+        "sizeKB": 266.8,
+        "sharpness": 784.6,
+        "brightness": 112.5
+      }
+    ]
+  },
+  {
+    "slug": "agent-jean",
+    "title": "Agent Jean — Glasses & Pistol",
+    "rendersCount": 6,
+    "wfCount": 1,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/agent-jean/01-jean-action-aim.jpg",
+        "label": "Agent Jean — Action Pistol Aim",
+        "dim": "1920x1080",
+        "sizeKB": 145.5,
+        "sharpness": 116.2,
+        "brightness": 101
+      },
+      {
+        "src": "./public/assets/renders/agent-jean/02-jean-portrait-01.jpg",
+        "label": "Agent Jean — Three-Quarter Stance",
+        "dim": "1920x1080",
+        "sizeKB": 147,
+        "sharpness": 59.4,
+        "brightness": 57
+      },
+      {
+        "src": "./public/assets/renders/agent-jean/03-jean-portrait-02.jpg",
+        "label": "Agent Jean — Glasses Closeup",
+        "dim": "1920x1080",
+        "sizeKB": 218.8,
+        "sharpness": 106.9,
+        "brightness": 90.4
+      },
+      {
+        "src": "./public/assets/renders/agent-jean/04-jean-side-profile.jpg",
+        "label": "Agent Jean — Full Walk Pose",
+        "dim": "1920x1080",
+        "sizeKB": 222,
+        "sharpness": 91.8,
+        "brightness": 92.2
+      },
+      {
+        "src": "./public/assets/renders/agent-jean/05-jean-back-jacket.jpg",
+        "label": "Agent Jean — Ponytail Rear",
+        "dim": "1920x1080",
+        "sizeKB": 187,
+        "sharpness": 85.6,
+        "brightness": 90.9
+      },
+      {
+        "src": "./public/assets/renders/agent-jean/06-jean-low-angle.jpg",
+        "label": "Agent Jean — Low Rim Lighting",
+        "dim": "1920x1080",
+        "sizeKB": 182.1,
+        "sharpness": 152.7,
+        "brightness": 89
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/agent-jean/01-jean-maya-wireframe.jpg",
+        "label": "Maya Wireframe — 68,001 Tris Face & Handgun",
+        "dim": "1920x1080",
+        "sizeKB": 417.1,
+        "sharpness": 404.5,
+        "brightness": 72.4
+      }
+    ]
+  },
+  {
+    "slug": "cozy-gamer-bedroom",
+    "title": "Cozy Gamer Bedroom Diorama",
+    "rendersCount": 4,
+    "wfCount": 4,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/cozy-gamer-bedroom/01-gamer-bedroom-final.jpg",
+        "label": "Cozy Gamer Bedroom — Final Warm Look",
+        "dim": "2048x2048",
+        "sizeKB": 279,
+        "sharpness": 188,
+        "brightness": 8.7
+      },
+      {
+        "src": "./public/assets/renders/cozy-gamer-bedroom/02-gamer-bedroom-day-angle.jpg",
+        "label": "Gamer Bedroom — Isometric Desk View",
+        "dim": "1920x1080",
+        "sizeKB": 400,
+        "sharpness": 480.6,
+        "brightness": 160.2
+      },
+      {
+        "src": "./public/assets/renders/cozy-gamer-bedroom/03-gamer-bedroom-wip-pass.jpg",
+        "label": "Gamer Bedroom — Clean Studio Lighting",
+        "dim": "2048x2048",
+        "sizeKB": 211.9,
+        "sharpness": 43.8,
+        "brightness": 4.9
+      },
+      {
+        "src": "./public/assets/renders/cozy-gamer-bedroom/04-gamer-bedroom-night-led.jpg",
+        "label": "Gamer Bedroom — Evening LED Pass",
+        "dim": "2048x2048",
+        "sizeKB": 262.8,
+        "sharpness": 68.6,
+        "brightness": 186.9
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/cozy-gamer-bedroom/01-bedroom-maya-persp.png",
+        "label": "Maya 529,006 Tris Perspective Orthographic",
+        "dim": "1918x936",
+        "sizeKB": 388.3,
+        "sharpness": 1048,
+        "brightness": 42.5
+      },
+      {
+        "src": "./public/assets/workflow/cozy-gamer-bedroom/02-bedroom-front-ortho.png",
+        "label": "Maya Front Elevation Blueprint",
+        "dim": "1919x1028",
+        "sizeKB": 415.2,
+        "sharpness": 1189.6,
+        "brightness": 45.1
+      },
+      {
+        "src": "./public/assets/workflow/cozy-gamer-bedroom/03-bedroom-side-ortho.png",
+        "label": "Maya Side Elevation Blueprint",
+        "dim": "1200x732",
+        "sizeKB": 191.9,
+        "sharpness": 1040.8,
+        "brightness": 13.5
+      },
+      {
+        "src": "./public/assets/workflow/cozy-gamer-bedroom/04-bedroom-top-ortho.png",
+        "label": "Maya Top Floorplan Layout",
+        "dim": "1265x768",
+        "sizeKB": 302.2,
+        "sharpness": 1255.9,
+        "brightness": 27.5
+      }
+    ]
+  },
+  {
+    "slug": "minimal-bedroom",
+    "title": "Minimal Wood Loft Bedroom",
+    "rendersCount": 1,
+    "wfCount": 3,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/minimal-bedroom/01-minimal-bedroom-hero.jpg",
+        "label": "Minimal Loft Bedroom — Final Render",
+        "dim": "2048x2048",
+        "sizeKB": 243.4,
+        "sharpness": 276.5,
+        "brightness": 11.7
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/minimal-bedroom/01-minimal-front-ortho.png",
+        "label": "Maya Front Ortho (33,208 Tris)",
+        "dim": "1444x818",
+        "sizeKB": 235.7,
+        "sharpness": 986,
+        "brightness": 29.5
+      },
+      {
+        "src": "./public/assets/workflow/minimal-bedroom/02-minimal-side-ortho.png",
+        "label": "Maya Side Elevation View",
+        "dim": "1431x790",
+        "sizeKB": 300.6,
+        "sharpness": 1304.8,
+        "brightness": 49.1
+      },
+      {
+        "src": "./public/assets/workflow/minimal-bedroom/03-minimal-top-ortho.png",
+        "label": "Maya Top Floorplan",
+        "dim": "1493x868",
+        "sizeKB": 222.6,
+        "sharpness": 995.5,
+        "brightness": 35.2
+      }
+    ]
+  },
+  {
+    "slug": "asian-heritage-architecture",
+    "title": "Asian Heritage Courtyard & Pagoda",
+    "rendersCount": 1,
+    "wfCount": 1,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/asian-heritage-architecture/01-chinese-pagoda-courtyard.jpg",
+        "label": "Chinese Pagoda Tower & Zen Garden",
+        "dim": "2048x2048",
+        "sizeKB": 569.3,
+        "sharpness": 869.5,
+        "brightness": 198.7
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/asian-heritage-architecture/01-korean-courtyard-split-wireframe.png",
+        "label": "Korean Courtyard Estate — Wireframe vs Water Lookdev",
+        "dim": "1106x473",
+        "sizeKB": 413.9,
+        "sharpness": 2189.5,
+        "brightness": 107.5
+      }
+    ]
+  },
+  {
+    "slug": "aircraft-cabin-seat",
+    "title": "Commercial Aircraft Cabin Seat",
+    "rendersCount": 4,
+    "wfCount": 1,
+    "baCount": 1,
+    "renders": [
+      {
+        "src": "./public/assets/renders/aircraft-cabin-seat/01-cabin-seat-hero.jpg",
+        "label": "Commercial Aircraft Seat — Hero Angle",
+        "dim": "1920x1080",
+        "sizeKB": 226.6,
+        "sharpness": 51.1,
+        "brightness": 78.6
+      },
+      {
+        "src": "./public/assets/renders/aircraft-cabin-seat/02-cabin-seat-side-recline.jpg",
+        "label": "Aircraft Seat — Side Armrest & Profile",
+        "dim": "1920x1080",
+        "sizeKB": 383,
+        "sharpness": 430.7,
+        "brightness": 110.8
+      },
+      {
+        "src": "./public/assets/renders/aircraft-cabin-seat/03-cabin-seat-rear-tray.jpg",
+        "label": "Aircraft Seat — Rear Tray Table",
+        "dim": "1920x1080",
+        "sizeKB": 346.8,
+        "sharpness": 395.5,
+        "brightness": 65.8
+      },
+      {
+        "src": "./public/assets/renders/aircraft-cabin-seat/04-cabin-seat-leather-ver2.jpg",
+        "label": "Aircraft Seat — Quilted Leather Ver.2",
+        "dim": "1920x1080",
+        "sizeKB": 230.7,
+        "sharpness": 198.4,
+        "brightness": 139.1
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/aircraft-cabin-seat/01-cabin-seat-wireframe.png",
+        "label": "Aircraft Seat Topology (Matched Hero Camera)",
+        "dim": "1317x706",
+        "sizeKB": 282,
+        "sharpness": 694.9,
+        "brightness": 101.1
+      }
+    ]
+  },
+  {
+    "slug": "product-scifi-props",
+    "title": "HiET Smart Bulb, Sci-Fi & Hero Props",
+    "rendersCount": 12,
+    "wfCount": 3,
+    "baCount": 2,
+    "renders": [
+      {
+        "src": "./public/assets/renders/product-scifi-props/01-hiet-smart-led-bulb.jpg",
+        "label": "HiET Commercial Smart LED Bulb",
+        "dim": "1920x1080",
+        "sizeKB": 352.6,
+        "sharpness": 234.4,
+        "brightness": 34.9
+      },
+      {
+        "src": "./public/assets/renders/product-scifi-props/02-scifi-cryo-pod.png",
+        "label": "Sci-Fi Glass Cryo Pod Capsule",
+        "dim": "724x623",
+        "sizeKB": 157.8,
+        "sharpness": 200.2,
+        "brightness": 53.6
+      },
+      {
+        "src": "./public/assets/renders/product-scifi-props/03-scifi-fuel-dispenser.png",
+        "label": "Sci-Fi Fuel Pump & Hose Station",
+        "dim": "933x655",
+        "sizeKB": 295.3,
+        "sharpness": 433,
+        "brightness": 55.6
+      },
+      {
+        "src": "./public/assets/renders/product-scifi-props/04-ancient-spellbook.png",
+        "label": "Ancient Carved Spellbook Prop",
+        "dim": "855x705",
+        "sizeKB": 283.2,
+        "sharpness": 82.1,
+        "brightness": 42
+      },
+      {
+        "src": "./public/assets/renders/product-scifi-props/05-rusted-les-paul-body.jpg",
+        "label": "Weathered Electric Guitar Body",
+        "dim": "1920x1080",
+        "sizeKB": 182,
+        "sharpness": 234.5,
+        "brightness": 172.4
+      },
+      {
+        "src": "./public/assets/renders/product-scifi-props/06-dinosaur-fossil-skeleton.jpg",
+        "label": "Theropod Dinosaur Fossil Spine & Skull",
+        "dim": "960x540",
+        "sizeKB": 50.9,
+        "sharpness": 353,
+        "brightness": 198.4
+      },
+      {
+        "src": "./public/assets/renders/product-scifi-props/07-great-white-shark-head.jpg",
+        "label": "Sculpted Shark Bust Trophy",
+        "dim": "960x540",
+        "sizeKB": 30.8,
+        "sharpness": 47.2,
+        "brightness": 200.5
+      },
+      {
+        "src": "./public/assets/renders/product-scifi-props/08-orange-tabby-cat-warm.jpg",
+        "label": "Stylized Orange Cat — Warm Floor Glow",
+        "dim": "1920x1080",
+        "sizeKB": 243.5,
+        "sharpness": 118.9,
+        "brightness": 116.7
+      },
+      {
+        "src": "./public/assets/renders/product-scifi-props/09-orange-tabby-cat-front.jpg",
+        "label": "Stylized Orange Cat — Neutral Front",
+        "dim": "1920x1080",
+        "sizeKB": 159.4,
+        "sharpness": 129.7,
+        "brightness": 115.5
+      },
+      {
+        "src": "./public/assets/renders/product-scifi-props/10-orange-tabby-cat-opposite.jpg",
+        "label": "Stylized Orange Cat — Right Turn",
+        "dim": "1920x1080",
+        "sizeKB": 201.8,
+        "sharpness": 128.4,
+        "brightness": 116.3
+      },
+      {
+        "src": "./public/assets/renders/product-scifi-props/11-orange-tabby-cat-bright.jpg",
+        "label": "Stylized Orange Cat — Bright Rim",
+        "dim": "1920x1080",
+        "sizeKB": 209.8,
+        "sharpness": 92.3,
+        "brightness": 195.9
+      },
+      {
+        "src": "./public/assets/renders/product-scifi-props/12-orange-tabby-cat-turn.jpg",
+        "label": "Stylized Orange Cat — Studio Check",
+        "dim": "1920x1080",
+        "sizeKB": 154.8,
+        "sharpness": 75.6,
+        "brightness": 186.7
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/product-scifi-props/01-led-bulb-wireframe.png",
+        "label": "HiET LED Bulb Heat-Sink Wireframe",
+        "dim": "1311x699",
+        "sizeKB": 905,
+        "sharpness": 1642.6,
+        "brightness": 49.2
+      },
+      {
+        "src": "./public/assets/workflow/product-scifi-props/02-spellbook-wireframe.png",
+        "label": "Spellbook Matched Wireframe Cage",
+        "dim": "900x734",
+        "sizeKB": 321.8,
+        "sharpness": 143.2,
+        "brightness": 42.3
+      },
+      {
+        "src": "./public/assets/workflow/product-scifi-props/03-shark-head-wireframe.png",
+        "label": "Shark Bust Quad Wireframe",
+        "dim": "686x570",
+        "sizeKB": 67.2,
+        "sharpness": 3725.2,
+        "brightness": 101.7
+      }
+    ]
+  },
+  {
+    "slug": "egyptian-sphinx-island",
+    "title": "Egyptian Sphinx Island (Roblox / Stylized)",
+    "rendersCount": 2,
+    "wfCount": 1,
+    "baCount": 1,
+    "renders": [
+      {
+        "src": "./public/assets/renders/egyptian-sphinx-island/01-egyptian-sphinx-wide.jpg",
+        "label": "Egyptian Sphinx Island — Full Overview",
+        "dim": "1920x1080",
+        "sizeKB": 468,
+        "sharpness": 306.2,
+        "brightness": 129.5
+      },
+      {
+        "src": "./public/assets/renders/egyptian-sphinx-island/02-egyptian-sphinx-avatar-scale.jpg",
+        "label": "Sphinx Plaza with Roblox Avatar (src: Mummy.jpg)",
+        "dim": "2048x2048",
+        "sizeKB": 551.1,
+        "sharpness": 188.8,
+        "brightness": 137
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/egyptian-sphinx-island/01-sphinx-island-wireframe.png",
+        "label": "Maya Island & Sphinx Blue Wireframe",
+        "dim": "1919x1002",
+        "sizeKB": 595.7,
+        "sharpness": 1217.6,
+        "brightness": 82.1
+      }
+    ]
+  },
+  {
+    "slug": "bathroom-island-diorama",
+    "title": "Skibidi Bathroom Diorama & Caution Prop",
+    "rendersCount": 3,
+    "wfCount": 3,
+    "baCount": 1,
+    "renders": [
+      {
+        "src": "./public/assets/renders/bathroom-island-diorama/01-bathroom-island-diorama.jpg",
+        "label": "Floating Bathroom Island Diorama",
+        "dim": "1920x1080",
+        "sizeKB": 193.7,
+        "sharpness": 157.8,
+        "brightness": 74.4
+      },
+      {
+        "src": "./public/assets/renders/bathroom-island-diorama/02-skibidi-prop-render.jpg",
+        "label": "Grungy Porcelain Toilet Character Prop",
+        "dim": "960x540",
+        "sizeKB": 73.7,
+        "sharpness": 141.1,
+        "brightness": 176.2
+      },
+      {
+        "src": "./public/assets/renders/bathroom-island-diorama/03-wet-floor-caution-sign.png",
+        "label": "Wet Floor Caution Stand on Water Puddle",
+        "dim": "737x824",
+        "sizeKB": 241.4,
+        "sharpness": 221.9,
+        "brightness": 60.5
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/bathroom-island-diorama/01-caution-sign-wireframe.png",
+        "label": "Wet Floor Sign Wireframe Cage",
+        "dim": "677x787",
+        "sizeKB": 226.6,
+        "sharpness": 192.3,
+        "brightness": 60.5
+      },
+      {
+        "src": "./public/assets/workflow/bathroom-island-diorama/02-bathroom-island-wireframe.png",
+        "label": "Bathroom Island Full Wireframe Mesh",
+        "dim": "857x484",
+        "sizeKB": 134.3,
+        "sharpness": 1538.2,
+        "brightness": 76.5
+      },
+      {
+        "src": "./public/assets/workflow/bathroom-island-diorama/03-substance-bathroom-kit-textures.png",
+        "label": "Substance 3D Painter — Bathroom Props Material Sheet",
+        "dim": "1389x735",
+        "sizeKB": 130.6,
+        "sharpness": 455.9,
+        "brightness": 44.1
+      }
+    ]
+  },
+  {
+    "slug": "stylized-game-islands",
+    "title": "Sci-Fi & Fantasy Game Islands Collection",
+    "rendersCount": 8,
+    "wfCount": 0,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/stylized-game-islands/01-space-rocket-island.jpg",
+        "label": "Space Launchpad Floating Island",
+        "dim": "1920x1080",
+        "sizeKB": 224.6,
+        "sharpness": 388,
+        "brightness": 169.3
+      },
+      {
+        "src": "./public/assets/renders/stylized-game-islands/02-deep-sea-base-island.jpg",
+        "label": "Deep-Sea Outpost Island",
+        "dim": "960x540",
+        "sizeKB": 54.9,
+        "sharpness": 220.2,
+        "brightness": 176.9
+      },
+      {
+        "src": "./public/assets/renders/stylized-game-islands/03-dome-sanctuary-island.jpg",
+        "label": "Golden Dome Sanctuary Island",
+        "dim": "2048x2048",
+        "sizeKB": 431.8,
+        "sharpness": 240.1,
+        "brightness": 166.6
+      },
+      {
+        "src": "./public/assets/renders/stylized-game-islands/04-lighthouse-barrel-chest.jpg",
+        "label": "Sea Island Prop Kit (Barrel, Chest, Lighthouse)",
+        "dim": "960x540",
+        "sizeKB": 33.2,
+        "sharpness": 194.8,
+        "brightness": 196.9
+      },
+      {
+        "src": "./public/assets/renders/stylized-game-islands/05-stylized-treehouse.png",
+        "label": "Stylized Treehouse Door Prop",
+        "dim": "678x619",
+        "sizeKB": 245.1,
+        "sharpness": 163.2,
+        "brightness": 51.5
+      },
+      {
+        "src": "./public/assets/renders/stylized-game-islands/06-trio-elemental-game-eggs.png",
+        "label": "Sci-Fi, Magma & Rocket Game Eggs",
+        "dim": "972x650",
+        "sizeKB": 179.2,
+        "sharpness": 386.9,
+        "brightness": 47
+      },
+      {
+        "src": "./public/assets/renders/stylized-game-islands/07-cube-pet-trio-studio.jpg",
+        "label": "Stylized Cube Pet Companions (Studio Gray)",
+        "dim": "960x540",
+        "sizeKB": 49.5,
+        "sharpness": 226.7,
+        "brightness": 195.9
+      },
+      {
+        "src": "./public/assets/renders/stylized-game-islands/08-cube-pet-trio-sky.png",
+        "label": "Stylized Cube Pet Companions (Sky Backdrop)",
+        "dim": "942x440",
+        "sizeKB": 202.4,
+        "sharpness": 339.6,
+        "brightness": 197.9
+      }
+    ],
+    "workflow": []
+  },
+  {
+    "slug": "street-commerce-buildings",
+    "title": "Street Burger Stand, Brick Bar & Lava Shop",
+    "rendersCount": 4,
+    "wfCount": 0,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/street-commerce-buildings/01-two-story-burger-stand.jpg",
+        "label": "Two-Story Rooftop Burger Container Shop",
+        "dim": "1920x1080",
+        "sizeKB": 183.9,
+        "sharpness": 766.1,
+        "brightness": 185.1
+      },
+      {
+        "src": "./public/assets/renders/street-commerce-buildings/02-brick-corner-bar-wide.jpg",
+        "label": "Brick Corner Bar Booth (src: Tomyumman.jpg)",
+        "dim": "1920x1080",
+        "sizeKB": 185.2,
+        "sharpness": 275.5,
+        "brightness": 182.8
+      },
+      {
+        "src": "./public/assets/renders/street-commerce-buildings/03-brick-corner-bar-tight.jpg",
+        "label": "Brick Corner Bar — Neon Rim Pass (src: Sung.jpg)",
+        "dim": "1920x1080",
+        "sizeKB": 388.9,
+        "sharpness": 546.7,
+        "brightness": 109.8
+      },
+      {
+        "src": "./public/assets/renders/street-commerce-buildings/04-magma-vein-shop-kiosk.jpg",
+        "label": "Magma-Vein Fantasy Game Shop",
+        "dim": "960x540",
+        "sizeKB": 52.4,
+        "sharpness": 315.1,
+        "brightness": 196.2
+      }
+    ],
+    "workflow": []
+  },
+  {
+    "slug": "pokemon-collection",
+    "title": "Pokémon Stylized 3D Tribute",
+    "rendersCount": 6,
+    "wfCount": 2,
+    "baCount": 1,
+    "renders": [
+      {
+        "src": "./public/assets/renders/pokemon-collection/01-reshiram-textured-front.jpg",
+        "label": "Reshiram — Painted Pearl & Gold Lookdev",
+        "dim": "1920x1080",
+        "sizeKB": 224.8,
+        "sharpness": 170.6,
+        "brightness": 88.5
+      },
+      {
+        "src": "./public/assets/renders/pokemon-collection/02-reshiram-textured-alternate.jpg",
+        "label": "Reshiram — Wing Pose Color Pass",
+        "dim": "1920x1080",
+        "sizeKB": 140.1,
+        "sharpness": 169.9,
+        "brightness": 87.8
+      },
+      {
+        "src": "./public/assets/renders/pokemon-collection/03-ceruledge-cel-outline.jpg",
+        "label": "Ceruledge — Stylized Dark Ink Outline",
+        "dim": "1920x1080",
+        "sizeKB": 143.8,
+        "sharpness": 265.8,
+        "brightness": 121.1
+      },
+      {
+        "src": "./public/assets/renders/pokemon-collection/04-zygarde-cobra-emissive.png",
+        "label": "Zygarde 50% Serpent — Hex Glow",
+        "dim": "830x832",
+        "sizeKB": 81.3,
+        "sharpness": 58.5,
+        "brightness": 41.5
+      },
+      {
+        "src": "./public/assets/renders/pokemon-collection/05-meowstic-front-plush.jpg",
+        "label": "Meowstic — Studio Front",
+        "dim": "960x540",
+        "sizeKB": 24.7,
+        "sharpness": 132.2,
+        "brightness": 4.2
+      },
+      {
+        "src": "./public/assets/renders/pokemon-collection/06-meowstic-three-quarter.jpg",
+        "label": "Meowstic — Three-Quarter Angle",
+        "dim": "960x540",
+        "sizeKB": 23.2,
+        "sharpness": 118.7,
+        "brightness": 3.1
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/pokemon-collection/01-reshiram-clay-sculpt.jpg",
+        "label": "Reshiram — Gray Clay Sculpt Pass (Matched Angle)",
+        "dim": "1920x1080",
+        "sizeKB": 118.3,
+        "sharpness": 206.5,
+        "brightness": 197.8
+      },
+      {
+        "src": "./public/assets/workflow/pokemon-collection/02-reshiram-clay-alternate.jpg",
+        "label": "Reshiram — Gray Clay Wing Silhouette",
+        "dim": "1920x1080",
+        "sizeKB": 110.4,
+        "sharpness": 146.3,
+        "brightness": 198.3
+      }
+    ]
+  },
+  {
+    "slug": "stylized-character-showcase",
+    "title": "Chibi Heroes, Lego Minifigs & Stylized Cast",
+    "rendersCount": 15,
+    "wfCount": 4,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/01-nagi-bluelock-chibi-front.jpg",
+        "label": "Nagi Seishiro #7 Chibi (Blue Lock)",
+        "dim": "1920x1080",
+        "sizeKB": 205.3,
+        "sharpness": 82.2,
+        "brightness": 113.2
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/02-nagi-bluelock-chibi-back.jpg",
+        "label": "Nagi #7 Chibi — Hair & Jersey Rear",
+        "dim": "1920x1080",
+        "sizeKB": 259.7,
+        "sharpness": 143.7,
+        "brightness": 118.9
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/03-kaiwa-green-coat-chibi.jpg",
+        "label": "Kaiwa Chibi — Front Lookdev",
+        "dim": "960x540",
+        "sizeKB": 78.6,
+        "sharpness": 150,
+        "brightness": 114.2
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/04-kaiwa-chibi-side.jpg",
+        "label": "Kaiwa Chibi — Rear/Angle View",
+        "dim": "960x540",
+        "sizeKB": 74,
+        "sharpness": 161.3,
+        "brightness": 106
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/05-leon-kennedy-rpd-chibi.jpg",
+        "label": "Leon S. Kennedy Chibi (R.P.D. Armor)",
+        "dim": "1920x1080",
+        "sizeKB": 192,
+        "sharpness": 109.3,
+        "brightness": 51.8
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/06-leon-kennedy-chibi-back.jpg",
+        "label": "Leon Chibi — Holster & Gear Rear",
+        "dim": "1920x1080",
+        "sizeKB": 165.1,
+        "sharpness": 113.8,
+        "brightness": 51.8
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/07-mona-beret-chibi-angle.jpg",
+        "label": "Mona Beret Chibi — Three-Quarter",
+        "dim": "1920x1080",
+        "sizeKB": 108.2,
+        "sharpness": 113.4,
+        "brightness": 118.4
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/08-mona-beret-chibi-front.jpg",
+        "label": "Mona Beret Chibi — Front T-Pose",
+        "dim": "1920x1080",
+        "sizeKB": 103.2,
+        "sharpness": 101,
+        "brightness": 116.4
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/09-blue-hoodie-stylized-boy.jpg",
+        "label": "Blue Hoodie Graphic Anime Character",
+        "dim": "1920x1080",
+        "sizeKB": 93.6,
+        "sharpness": 166.5,
+        "brightness": 199
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/10-female-samurai-kimono.jpg",
+        "label": "Dark Kimono Female Samurai Character",
+        "dim": "1920x1080",
+        "sizeKB": 90.7,
+        "sharpness": 166.2,
+        "brightness": 194
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/11-chewbacca-plush-chibi.jpg",
+        "label": "Stylized Chewbacca Chibi Bandolier",
+        "dim": "1920x1080",
+        "sizeKB": 122.5,
+        "sharpness": 270.1,
+        "brightness": 185.1
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/12-lego-dark-trooper-render.jpg",
+        "label": "Lego Dark Trooper Scratched Armor",
+        "dim": "2048x2048",
+        "sizeKB": 138.2,
+        "sharpness": 98.4,
+        "brightness": 199.7
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/13-lego-robin-front.jpg",
+        "label": "Lego Robin Minifigure — Front",
+        "dim": "960x540",
+        "sizeKB": 50,
+        "sharpness": 249.3,
+        "brightness": 191.5
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/14-lego-robin-angle.jpg",
+        "label": "Lego Robin Minifigure — Cape Profile",
+        "dim": "960x540",
+        "sizeKB": 38.3,
+        "sharpness": 150.3,
+        "brightness": 197.2
+      },
+      {
+        "src": "./public/assets/renders/stylized-character-showcase/15-roblox-bandaged-mummy.png",
+        "label": "Bandaged Roblox Mummy Avatar (src: Screenshot 01-18)",
+        "dim": "1028x783",
+        "sizeKB": 456.4,
+        "sharpness": 1148.7,
+        "brightness": 60.9
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/stylized-character-showcase/01-nagi-wireframe-turntable-gif.gif",
+        "label": "Maya Wireframe Turntable GIF — Nagi #7 Chibi",
+        "dim": "1920x1080",
+        "sizeKB": 527,
+        "sharpness": 828.7,
+        "brightness": 99
+      },
+      {
+        "src": "./public/assets/workflow/stylized-character-showcase/02-kaiwa-wireframe-turntable-gif.gif",
+        "label": "Maya Wireframe Turntable GIF — Kaiwa Chibi",
+        "dim": "1920x1080",
+        "sizeKB": 800.8,
+        "sharpness": 304.7,
+        "brightness": 79.5
+      },
+      {
+        "src": "./public/assets/workflow/stylized-character-showcase/03-lego-dark-trooper-arnold-hud.png",
+        "label": "Maya Arnold Viewport — 230,648 Tris Dark Trooper",
+        "dim": "1125x713",
+        "sizeKB": 215.6,
+        "sharpness": 671.9,
+        "brightness": 164.5
+      },
+      {
+        "src": "./public/assets/workflow/stylized-character-showcase/04-lego-dark-trooper-rear-viewport.png",
+        "label": "Maya Arnold Rear Check (230,648 Tris)",
+        "dim": "1119x706",
+        "sizeKB": 174.7,
+        "sharpness": 588.8,
+        "brightness": 168
+      }
+    ]
+  },
+  {
+    "slug": "roblox-prop-pack",
+    "title": "Roblox / Stylized Wearable & Weapon Pack",
+    "rendersCount": 8,
+    "wfCount": 0,
+    "baCount": 0,
+    "renders": [
+      {
+        "src": "./public/assets/renders/roblox-prop-pack/01-prop-pack-group-lineup.jpg",
+        "label": "Roblox Stylized Prop Pack Lineup (src: Desert.jpg)",
+        "dim": "960x540",
+        "sizeKB": 68.5,
+        "sharpness": 532.3,
+        "brightness": 184.8
+      },
+      {
+        "src": "./public/assets/renders/roblox-prop-pack/02-red-crate-blocky-mech.jpg",
+        "label": "Red Crate Blocky Mech (src: Sung1.jpg)",
+        "dim": "1920x1080",
+        "sizeKB": 301.8,
+        "sharpness": 535.7,
+        "brightness": 124.5
+      },
+      {
+        "src": "./public/assets/renders/roblox-prop-pack/03-camo-desert-eagle.jpg",
+        "label": "Forest Camo Desert Eagle Prop",
+        "dim": "960x540",
+        "sizeKB": 63.3,
+        "sharpness": 324.5,
+        "brightness": 177
+      },
+      {
+        "src": "./public/assets/renders/roblox-prop-pack/04-wooden-rowboat.jpg",
+        "label": "Hand-Textured Wooden Rowboat",
+        "dim": "960x540",
+        "sizeKB": 54.1,
+        "sharpness": 141.7,
+        "brightness": 184.3
+      },
+      {
+        "src": "./public/assets/renders/roblox-prop-pack/05-terrazzo-bucket-hat.jpg",
+        "label": "Terrazzo Crimson Bucket Hat",
+        "dim": "960x540",
+        "sizeKB": 52.1,
+        "sharpness": 114.6,
+        "brightness": 192.8
+      },
+      {
+        "src": "./public/assets/renders/roblox-prop-pack/06-toothless-dragon-hood.jpg",
+        "label": "Toothless Dragon Plush Hat",
+        "dim": "960x540",
+        "sizeKB": 36.4,
+        "sharpness": 281.9,
+        "brightness": 186.5
+      },
+      {
+        "src": "./public/assets/renders/roblox-prop-pack/07-red-racing-helmet.jpg",
+        "label": "Metallic Red Racing Helmet",
+        "dim": "960x540",
+        "sizeKB": 37.1,
+        "sharpness": 144.8,
+        "brightness": 190.5
+      },
+      {
+        "src": "./public/assets/renders/roblox-prop-pack/08-gold-link-chain-necklace.jpg",
+        "label": "Chunky Gold Chain Necklace",
+        "dim": "960x540",
+        "sizeKB": 24.5,
+        "sharpness": 59.1,
+        "brightness": 205.5
+      }
+    ],
+    "workflow": []
+  },
+  {
+    "slug": "stylized-slime-stack",
+    "title": "Stylized Slime Stack",
+    "rendersCount": 2,
+    "wfCount": 1,
+    "baCount": 1,
+    "renders": [
+      {
+        "src": "./public/assets/renders/stylized-slime-stack/01-slime-stack-hero.jpg",
+        "label": "Three-Tier Stylized Slime Stack",
+        "dim": "1920x1080",
+        "sizeKB": 396.3,
+        "sharpness": 208.6,
+        "brightness": 33.4
+      },
+      {
+        "src": "./public/assets/renders/stylized-slime-stack/02-slime-stack-three-quarter.jpg",
+        "label": "Slime Stack — Side & Highlight View",
+        "dim": "1920x1080",
+        "sizeKB": 416.7,
+        "sharpness": 212.6,
+        "brightness": 29
+      }
+    ],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/stylized-slime-stack/01-slime-stack-wireframe.png",
+        "label": "Slime Stack Maya Quad Wireframe Topology",
+        "dim": "1312x698",
+        "sizeKB": 974,
+        "sharpness": 695.8,
+        "brightness": 48.6
+      }
+    ]
+  },
+  {
+    "slug": "sailboat-ocean-prototype",
+    "title": "Sailboat Ocean Game Prototype",
+    "rendersCount": 0,
+    "wfCount": 0,
+    "baCount": 0,
+    "renders": [],
+    "workflow": []
+  },
+  {
+    "slug": "character-sculpt-rigging-studies",
+    "title": "Head Sculpt & Control Rigging Studies",
+    "rendersCount": 0,
+    "wfCount": 1,
+    "baCount": 0,
+    "renders": [],
+    "workflow": [
+      {
+        "src": "./public/assets/workflow/character-sculpt-rigging-studies/01-gray-clay-head-sculpt.jpg",
+        "label": "ZBrush / Maya Gray Clay Stylized Head Blockout",
+        "dim": "1920x1080",
+        "sizeKB": 55.4,
+        "sharpness": 11.2,
+        "brightness": 201.6
+      }
+    ]
+  }
+]

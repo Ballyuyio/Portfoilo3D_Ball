@@ -547,3 +547,30 @@
 - Data & File Integrity Check: ครบทั้ง 30 โปรเจกต์, `.webp` และ `-400.webp` ครบ 100% (`Missing: 0`), ลิงก์ใน `index.html` ครบ 100%
 - Mock DOM & Router Smoke Test (`390x844`): Initialize ผ่าน, EN/TH Toggle ผ่าน, Render `<picture>`/`400w` ครบ, ไม่มี `.gif` ดิบในตาราง Workflow, Project Detail Route (`#/work/stylized-character-showcase`) ทำงานปกติ
 - **หมายเหตุการซ้ำซ้อนใน Repo**: โฟลเดอร์ `Portfolio_Patanawan/public/` ยังมีไฟล์ภาพ/วิดีโอสำเนาชุดเก่าอยู่บน Disk (ไม่ได้แก้ไขเนื่องจากเป็นโฟลเดอร์สำรองเดิม และ `Portfolio_Patanawan/WorkingModelmage/` เป็น READ-ONLY) แนะนำให้ใส่ใน `.vercelignore` / `.gitignore` หรือลบสำเนาที่ไม่ใช่ `WorkingModelmage` หากไม่ใช้งานแล้ว
+
+---
+
+## 4. Portfolio Artwork Curation & Quality Cleanup (2026-11-16)
+
+### A. วัตถุประสงค์
+คัดกรองรูปภาพที่ไม่ควรอยู่ในพอร์ตโฟลิโอออก เพื่อยกระดับคุณภาพความน่าเชื่อถือของศิลปิน 3D (Ball Patanawan) โดยคัดทิ้งภาพที่มืดสนิท, ภาพ iteration/lighting pass ซ้ำซ้อน, ภาพแบบฝึกหัดไม่สมบูรณ์, และภาพมีม
+
+### B. สรุปผลการดำเนินการ
+- ย้ายไฟล์ที่ถูกคัดออก 22 รายการ (รวมไฟล์อนุพันธ์ `.webp`, `thumbs/` ทั้งสิ้น **110 ไฟล์**, ขนาดรวม **6.13 MB**) ไปไว้ที่โฟลเดอร์ `_removed/` โดยคงโครงสร้างไดเรกทอรีเดิมไว้ครบถ้วน
+- อัปเดต `data/projects.js` และ `data/projects.json`:
+  - Renders: ลดจาก 140 รูป เหลือ **119 รูป**
+  - Workflow Breakdowns: ลดจาก 54 รูป เหลือ **53 รูป**
+  - Before/After Sliders: คงเดิม **19 อัน** (0 ผลกระทบ)
+  - Motion Clips: คงเดิม **26 คลิป** (ไม่แตะต้อง)
+  - Projects: คงเดิม **30 โปรเจกต์** (ไม่มีโปรเจกต์ใดที่รูปเหลือ 0)
+- อัปเกรด Cover ของ `character-mint` จากรูป `01` (960x540) ไปเป็นรูป `02-mint-front-rigged.jpg` (Full HD 1920x1080)
+- ซิงก์ตัวเลขสถิติบน `index.html`, `js/app.js`, `js/app.min.js`, และ `PROJECT_HANDOFF.md` ทั้งภาษาไทยและภาษาอังกฤษ
+- รันการตรวจสอบความสมบูรณ์ (`tools/verify_curation.js`): ผ่าน 100% ไม่มี 404 broken image paths
+
+### C. คำสั่งกู้คืนไฟล์ (Rollback Instructions)
+หากต้องการนำรูปภาพกลับคืน สามารถย้ายไฟล์จาก `_removed/` กลับมายังไดเรกทอรีเดิมได้ทันที:
+```powershell
+# ตัวอย่างการกู้คืนรูปภาพชุดใดชุดหนึ่งกลับมา
+Copy-Item -Path "_removed/public/assets/renders/<project-name>/*" -Destination "public/assets/renders/<project-name>/" -Recurse -Force
+```
+
