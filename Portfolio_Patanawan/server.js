@@ -105,7 +105,7 @@ const server = http.createServer((req, res) => {
       'Accept-Ranges': 'bytes',
       'Content-Length': stats.size,
       'Content-Type': contentType,
-      'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=3600'
+      'Cache-Control': (ext === '.html' || ext === '.js' || ext === '.json') ? 'no-cache, no-store, must-revalidate' : 'public, max-age=3600'
     });
     if (req.method === 'HEAD') { res.end(); return; }
     fs.createReadStream(resolvedPath).pipe(res);
