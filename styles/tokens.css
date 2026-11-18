@@ -1,0 +1,220 @@
+/* ==========================================================================
+   STREET WALL // DESIGN TOKENS (Phase 1)
+   ระบบตัวแปรกลาง: สีผนัง, สีสเปรย์, ฟอนต์ (EN + TH Kanit), ระยะ, มุม, เงา, ความเร็ว
+   รองรับ 2 ธีม: Night Concrete Wall (ค่าเริ่มต้น) และ Day Concrete Wall ([data-theme="day"])
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. สีผนังคอนกรีตและพื้นผิว (Night Wall — Default)
+     ------------------------------------------------------------------------ */
+  --wall: #0a0a0a;
+  --wall-deep: #070709;
+  --surface: #111115;
+  --surface-elev: #17171d;
+  --surface-inset: #0c0c10;
+  --surface-glass: rgba(17, 17, 21, 0.86);
+  --header-bg: rgba(10, 10, 13, 0.94);
+  --footer-bg: #060608;
+  --modal-bg: rgba(5, 5, 8, 0.97);
+  --media-stage: #08080b;
+
+  /* ขอบและเส้นแบ่ง */
+  --border: #262632;
+  --border-subtle: #1f1f28;
+  --border-strong: #353545;
+  --border-dashed: #2e2e3a;
+  --outline-ink: #0a0a0a;
+
+  /* สีหมึกและตัวอักษร (WCAG AA) */
+  --ink-strong: #ffffff;
+  --ink: #f4f4f6;
+  --ink-muted: #b4b7c3;
+  --ink-dim: #818595;
+  --ink-on-bright: #0a0a0a;
+  --ink-on-pink: #ffffff;
+
+  /* ------------------------------------------------------------------------
+     2. สีสเปรย์กราฟฟิตี้ (Street Wall Pigments)
+     ------------------------------------------------------------------------ */
+  --paint-primary: #ff1fa2;
+  --paint-accent: #1fd0e8;
+  --paint-orange: #ff8a1f;
+  --paint-yellow: #ffd21f;
+  --paint-ready: #29e08d;
+  --paint-danger: #ff5c84;
+
+  /* แสงฟุ้งจากละอองสเปรย์และเทปกาว */
+  --paint-glow: rgba(255, 31, 162, 0.32);
+  --paint-glow-cyan: rgba(31, 208, 232, 0.3);
+  --paint-glow-yellow: rgba(255, 210, 31, 0.28);
+  --tape: rgba(255, 210, 31, 0.86);
+  --tape-shadow: rgba(0, 0, 0, 0.45);
+
+  /* พื้นผิวผนังคอนกรีต + ก่ออิฐจาง ๆ */
+  --wall-mortar-h: rgba(255, 255, 255, 0.02);
+  --wall-mortar-v: rgba(255, 255, 255, 0.014);
+  --wall-speckle-a: rgba(255, 255, 255, 0.45);
+  --wall-speckle-b: rgba(255, 255, 255, 0.3);
+  --wall-grain-opacity: 0.055;
+  --wall-wash-alpha: 0.048;
+
+  /* สีประจำ Section (อัปเดตแยกในแต่ละ Section) */
+  --sec-accent: var(--paint-primary);
+  --sec-ink: var(--ink-on-pink);
+
+  /* Backward-compatible aliases (รักษาความเข้ากันได้กับสไตล์เดิม 100%) */
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --calm: var(--surface);
+  --calm-elev: var(--surface-elev);
+  --calm-border: var(--border);
+  --pink: var(--paint-primary);
+  --orange: var(--paint-orange);
+  --yellow: var(--paint-yellow);
+  --cyan: var(--paint-accent);
+
+  /* ------------------------------------------------------------------------
+     3. ฟอนต์ (Graffiti Headings + Clean Grotesk Body + Thai Kanit 800)
+     ------------------------------------------------------------------------ */
+  --font-graffiti: 'Rubik Spray Paint', 'Bungee', Impact, sans-serif;
+  --font-graffiti-th: 'Kanit', 'Noto Sans Thai', sans-serif;
+  --font-marker: 'Rubik Spray Paint', 'Kanit', 'Noto Sans Thai', sans-serif;
+  --font-stencil: 'Bungee', 'Kanit', Impact, sans-serif;
+  --font-body: 'Space Grotesk', 'Noto Sans Thai', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+
+  /* ------------------------------------------------------------------------
+     4. ระยะ มุม ขอบ เงา และจังหวะอนิเมชัน (Layout, Radius, Shadow, Motion)
+     ------------------------------------------------------------------------ */
+  --max-w: 1320px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 48px;
+  --space-12: 64px;
+
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 999px;
+  --radius: var(--radius-sm);
+
+  --border-w-thin: 1.5px;
+  --border-w: 2px;
+  --border-w-thick: 3px;
+
+  /* เงาแบบสติ๊กเกอร์ทึบ (Offset Hard Shadow) */
+  --shadow-offset-sm: 3px 3px 0;
+  --shadow-offset-md: 5px 5px 0;
+  --shadow-offset-lg: 7px 7px 0;
+  --shadow-offset-xl: 10px 10px 0;
+  --shadow-sm: 3px 3px 0 var(--paint-primary);
+  --shadow-md: 5px 5px 0 var(--paint-accent);
+  --shadow-lg: 7px 7px 0 var(--paint-primary);
+  --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.42);
+
+  /* ความเร็วและเส้นโค้งอนิเมชัน */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 160ms;
+  --duration-base: 260ms;
+  --duration-smooth: 420ms;
+  --duration-slow: 680ms;
+
+  --t-fast: var(--duration-fast) var(--ease);
+  --t-smooth: var(--duration-smooth) var(--ease-smooth);
+}
+
+/* ==========================================================================
+   DAY CONCRETE WALL THEME (html[data-theme="day"])
+   ผนังปูนเปลือยกลางวัน — คอนทราสต์สูงผ่าน WCAG AA โดยคงกรอบภาพ 3D เป็นสตูดิโอมืด
+   ========================================================================== */
+html[data-theme="day"] {
+  color-scheme: light;
+
+  --wall: #eae7df;
+  --wall-deep: #dcd8cd;
+  --surface: #f8f6f0;
+  --surface-elev: #ffffff;
+  --surface-inset: #e5e1d7;
+  --surface-glass: rgba(248, 246, 240, 0.9);
+  --header-bg: rgba(234, 231, 223, 0.95);
+  --footer-bg: #141419;
+  --modal-bg: rgba(10, 10, 14, 0.96);
+  --media-stage: #09090d;
+
+  --border: #c3beb0;
+  --border-subtle: #d5d0c4;
+  --border-strong: #17171d;
+  --border-dashed: #aba596;
+  --outline-ink: #121216;
+
+  --ink-strong: #121216;
+  --ink: #1c1c23;
+  --ink-muted: #474a57;
+  --ink-dim: #636778;
+  --ink-on-bright: #0a0a0a;
+  --ink-on-pink: #ffffff;
+
+  /* เฉดสีสเปรย์บนผนังสว่าง (เข้มขึ้นเล็กน้อยเพื่อให้อ่านชัด WCAG AA) */
+  --paint-primary: #d80d82;
+  --paint-accent: #008ca3;
+  --paint-orange: #d95d00;
+  --paint-yellow: #ffd21f;
+  --paint-ready: #0d8f55;
+  --paint-danger: #cf1f4c;
+
+  --paint-glow: rgba(216, 13, 130, 0.22);
+  --paint-glow-cyan: rgba(0, 140, 163, 0.22);
+  --paint-glow-yellow: rgba(240, 184, 0, 0.25);
+  --tape: rgba(245, 200, 32, 0.88);
+  --tape-shadow: rgba(0, 0, 0, 0.22);
+
+  --wall-mortar-h: rgba(18, 18, 22, 0.055);
+  --wall-mortar-v: rgba(18, 18, 22, 0.04);
+  --wall-speckle-a: rgba(18, 18, 22, 0.32);
+  --wall-speckle-b: rgba(18, 18, 22, 0.2);
+  --wall-grain-opacity: 0.075;
+  --wall-wash-alpha: 0.08;
+  --shadow-soft: 0 8px 24px rgba(18, 18, 22, 0.12);
+}
+
+/* ==========================================================================
+   THAI HEADING TYPOGRAPHY (:lang(th))
+   ใช้ Kanit 800 เฉพาะหัวข้อใหญ่ภาษาไทย ให้ทรงหนา-คมเข้าคู่กับธีม Graffiti
+   ========================================================================== */
+html[lang="th"] .hero-name,
+html[lang="th"] .sec-title,
+html[lang="th"] .loader-tag,
+html[lang="th"] .footer-tag,
+html[lang="th"] .motion-band-title,
+html[lang="th"] .detail-subhead {
+  font-family: var(--font-graffiti-th);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+html[lang="th"] .hero-name {
+  line-height: 1.12;
+}
+html[lang="th"] .sec-title {
+  line-height: 1.15;
+}
+html[lang="th"] .btn-spray,
+html[lang="th"] .sticker-cta,
+html[lang="th"] .subtab-btn,
+html[lang="th"] .btn-load-more,
+html[lang="th"] .detail-back-btn,
+html[lang="th"] .back-top-btn {
+  font-family: var(--font-graffiti-th);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+

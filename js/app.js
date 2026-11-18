@@ -238,6 +238,9 @@
     lang: (() => {
       try { return localStorage.getItem('sw_lang') === 'th' ? 'th' : 'en'; } catch { return 'en'; }
     })(),
+    theme: (() => {
+      try { return localStorage.getItem('sw_theme') === 'day' ? 'day' : 'night'; } catch { return 'night'; }
+    })(),
     renderCat: 'all',
     renderSearch: '',
     renderLimit: 24,
@@ -1194,10 +1197,40 @@
   }
 
   // -------------------------------------------------------------------------
+  // DAY / NIGHT CONCRETE WALL THEME (localStorage persisted)
+  // -------------------------------------------------------------------------
+  function applyTheme() {
+    const isDay = state.theme === 'day';
+    if (isDay) {
+      document.documentElement.setAttribute('data-theme', 'day');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    const btn = document.getElementById('themeToggleBtn');
+    const txt = document.getElementById('themeBadgeText');
+    const svg = document.getElementById('themeIconSvg');
+    if (btn) {
+      btn.setAttribute('aria-pressed', String(isDay));
+      btn.setAttribute('aria-label', isDay ? 'Switch to Night Concrete Wall' : 'Switch to Day Concrete Wall');
+    }
+    if (txt) {
+      txt.textContent = isDay
+        ? (state.lang === 'th' ? 'สว่าง' : 'DAY')
+        : (state.lang === 'th' ? 'มืด' : 'NIGHT');
+    }
+    if (svg) {
+      svg.innerHTML = isDay
+        ? '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>'
+        : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    }
+  }
+
+  // -------------------------------------------------------------------------
   // BILINGUAL APPLICATION & UI EVENTS
   // -------------------------------------------------------------------------
   function applyLanguage() {
     document.documentElement.lang = state.lang;
+    applyTheme();
     const langBtnText = document.getElementById('langBadgeText');
     if (langBtnText) langBtnText.textContent = state.lang === 'th' ? 'TH -> EN' : 'EN -> TH';
 
@@ -1224,6 +1257,12 @@
   }
 
   function bindGlobalUi() {
+    document.getElementById('themeToggleBtn')?.addEventListener('click', () => {
+      state.theme = state.theme === 'day' ? 'night' : 'day';
+      try { localStorage.setItem('sw_theme', state.theme); } catch {}
+      applyTheme();
+    });
+
     document.getElementById('langToggleBtn')?.addEventListener('click', () => {
       state.lang = state.lang === 'en' ? 'th' : 'en';
       try { localStorage.setItem('sw_lang', state.lang); } catch {}
