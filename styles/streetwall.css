@@ -185,13 +185,13 @@ button {
   -webkit-backdrop-filter: blur(8px);
 }
 .header-inner {
-  max-width: var(--max-w);
+  max-width: 1400px;
   margin: 0 auto;
   padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
 }
 
 .brand-mark {
@@ -201,7 +201,8 @@ button {
   min-height: 44px;
   text-decoration: none;
   color: var(--ink-strong);
-  min-width: 0;
+  flex-shrink: 0;
+  overflow: hidden;
 }
 .brand-stencil {
   display: inline-flex;
@@ -230,20 +231,23 @@ button {
 .site-nav {
   display: none;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
+  flex-shrink: 1;
+  min-width: 0;
 }
 .nav-link {
   position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  padding: 10px 12px;
+  padding: 10px 9px;
   color: var(--ink-muted);
   text-decoration: none;
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  white-space: nowrap;
   transition: color var(--t-fast);
 }
 .nav-link:hover,
@@ -2000,14 +2004,22 @@ html:not([data-theme="day"]) .todo-tag {
 
 @media (min-width: 480px) {
   .hero-metrics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 24px;
   }
 }
 
-@media (min-width: 1320px) {
-  .brand-name {
+@media (min-width: 1360px) {
+  .hero-metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* แสดงชื่อเต็มข้างโลโก้ BALL.3D เฉพาะจอ Ultrawide >= 1480px (ภาษาอังกฤษ) เพื่อไม่ให้ทับเมนูเด็ดขาด */
+@media (min-width: 1480px) {
+  html:not([lang="th"]) .brand-name {
     display: inline;
   }
 }
