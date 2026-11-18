@@ -545,8 +545,14 @@
     };
 
     let dragging = false;
+    const markInteracted = () => {
+      if (!sliderEl.classList.contains('has-interacted')) {
+        sliderEl.classList.add('has-interacted');
+      }
+    };
     sliderEl.addEventListener('pointerdown', (e) => {
       dragging = true;
+      markInteracted();
       cachedRect = sliderEl.getBoundingClientRect();
       sliderEl.setPointerCapture(e.pointerId);
       setPos(calcFromClientX(e.clientX));
@@ -563,8 +569,8 @@
     sliderEl.addEventListener('pointercancel', endDrag);
 
     sliderEl.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); setPos(pct - 5); }
-      else if (e.key === 'ArrowRight') { e.preventDefault(); setPos(pct + 5); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); markInteracted(); setPos(pct - 5); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); markInteracted(); setPos(pct + 5); }
     });
   }
 
@@ -582,6 +588,7 @@
           </div>
           <span class="ba-tag ba-tag--before">${esc(pair.beforeLabel)}</span>
           <span class="ba-tag ba-tag--after">${esc(pair.afterLabel)}</span>
+          <span class="ba-drag-hint" aria-hidden="true">${esc(state.lang === 'th' ? '← ลากเทียบภาพ →' : '← DRAG TO COMPARE →')}</span>
           <div class="ba-divider">
             <div class="ba-handle" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="15 18 9 12 15 6"/></svg>
@@ -920,6 +927,7 @@
     }
 
     stopActiveInlineVideo();
+    if (window.STREET_FX_PLUS) window.STREET_FX_PLUS.triggerPageWipe();
     if (!wallView.classList.contains('is-hidden')) {
       state.lastWallScrollY = window.scrollY;
     }
@@ -1055,6 +1063,8 @@
     const detailView = document.getElementById('projectDetailView');
     if (!wallView || !detailView) return;
     stopActiveInlineVideo();
+    const wasDetailOpen = detailView.classList.contains('is-active');
+    if (wasDetailOpen && window.STREET_FX_PLUS) window.STREET_FX_PLUS.triggerPageWipe();
     detailView.classList.remove('is-active');
     wallView.classList.remove('is-hidden');
     if (window.STREET_FX) window.STREET_FX.refreshScroll();
@@ -1267,6 +1277,7 @@
       state.lang = state.lang === 'en' ? 'th' : 'en';
       try { localStorage.setItem('sw_lang', state.lang); } catch {}
       applyLanguage();
+      if (window.STREET_FX_PLUS) window.STREET_FX_PLUS.runTextScramble(document.querySelector('.hero-name'));
     });
 
     // Search Debounce
@@ -1389,7 +1400,14 @@
       try {
         await navigator.clipboard.writeText('Ballyuyio@gmail.com');
         btn.textContent = state.lang === 'th' ? 'คัดลอกแล้ว!' : 'COPIED!';
-        setTimeout(() => { btn.textContent = t('copyBtn'); }, 1800);
+        btn.classList.add('is-copied');
+        if (window.STREET_FX_PLUS) {
+          window.STREET_FX_PLUS.showToast(state.lang === 'th' ? 'คัดลอกอีเมล Ballyuyio@gmail.com แล้ว!' : 'EMAIL COPIED: Ballyuyio@gmail.com');
+        }
+        setTimeout(() => {
+          btn.textContent = t('copyBtn');
+          btn.classList.remove('is-copied');
+        }, 1800);
       } catch {
         window.location.href = 'mailto:Ballyuyio@gmail.com';
       }

@@ -238,6 +238,9 @@
     lang: (() => {
       try { return localStorage.getItem('sw_lang') === 'th' ? 'th' : 'en'; } catch { return 'en'; }
     })(),
+    theme: (() => {
+      try { return localStorage.getItem('sw_theme') === 'day' ? 'day' : 'night'; } catch { return 'night'; }
+    })(),
     renderCat: 'all',
     renderSearch: '',
     renderLimit: 24,
@@ -542,8 +545,14 @@
     };
 
     let dragging = false;
+    const markInteracted = () => {
+      if (!sliderEl.classList.contains('has-interacted')) {
+        sliderEl.classList.add('has-interacted');
+      }
+    };
     sliderEl.addEventListener('pointerdown', (e) => {
       dragging = true;
+      markInteracted();
       cachedRect = sliderEl.getBoundingClientRect();
       sliderEl.setPointerCapture(e.pointerId);
       setPos(calcFromClientX(e.clientX));
@@ -560,8 +569,8 @@
     sliderEl.addEventListener('pointercancel', endDrag);
 
     sliderEl.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); setPos(pct - 5); }
-      else if (e.key === 'ArrowRight') { e.preventDefault(); setPos(pct + 5); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); markInteracted(); setPos(pct - 5); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); markInteracted(); setPos(pct + 5); }
     });
   }
 
@@ -579,6 +588,7 @@
           </div>
           <span class="ba-tag ba-tag--before">${esc(pair.beforeLabel)}</span>
           <span class="ba-tag ba-tag--after">${esc(pair.afterLabel)}</span>
+          <span class="ba-drag-hint" aria-hidden="true">${esc(state.lang === 'th' ? '← ลากเทียบภาพ →' : '← DRAG TO COMPARE →')}</span>
           <div class="ba-divider">
             <div class="ba-handle" aria-hidden="true">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="15 18 9 12 15 6"/></svg>
@@ -917,6 +927,7 @@
     }
 
     stopActiveInlineVideo();
+    if (window.STREET_FX_PLUS) window.STREET_FX_PLUS.triggerPageWipe();
     if (!wallView.classList.contains('is-hidden')) {
       state.lastWallScrollY = window.scrollY;
     }
@@ -1052,6 +1063,8 @@
     const detailView = document.getElementById('projectDetailView');
     if (!wallView || !detailView) return;
     stopActiveInlineVideo();
+    const wasDetailOpen = detailView.classList.contains('is-active');
+    if (wasDetailOpen && window.STREET_FX_PLUS) window.STREET_FX_PLUS.triggerPageWipe();
     detailView.classList.remove('is-active');
     wallView.classList.remove('is-hidden');
     if (window.STREET_FX) window.STREET_FX.refreshScroll();
@@ -1194,10 +1207,40 @@
   }
 
   // -------------------------------------------------------------------------
+  // DAY / NIGHT CONCRETE WALL THEME (localStorage persisted)
+  // -------------------------------------------------------------------------
+  function applyTheme() {
+    const isDay = state.theme === 'day';
+    if (isDay) {
+      document.documentElement.setAttribute('data-theme', 'day');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    const btn = document.getElementById('themeToggleBtn');
+    const txt = document.getElementById('themeBadgeText');
+    const svg = document.getElementById('themeIconSvg');
+    if (btn) {
+      btn.setAttribute('aria-pressed', String(isDay));
+      btn.setAttribute('aria-label', isDay ? 'Switch to Night Concrete Wall' : 'Switch to Day Concrete Wall');
+    }
+    if (txt) {
+      txt.textContent = isDay
+        ? (state.lang === 'th' ? 'สว่าง' : 'DAY')
+        : (state.lang === 'th' ? 'มืด' : 'NIGHT');
+    }
+    if (svg) {
+      svg.innerHTML = isDay
+        ? '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>'
+        : '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    }
+  }
+
+  // -------------------------------------------------------------------------
   // BILINGUAL APPLICATION & UI EVENTS
   // -------------------------------------------------------------------------
   function applyLanguage() {
     document.documentElement.lang = state.lang;
+    applyTheme();
     const langBtnText = document.getElementById('langBadgeText');
     if (langBtnText) langBtnText.textContent = state.lang === 'th' ? 'TH -> EN' : 'EN -> TH';
 
@@ -1224,10 +1267,17 @@
   }
 
   function bindGlobalUi() {
+    document.getElementById('themeToggleBtn')?.addEventListener('click', () => {
+      state.theme = state.theme === 'day' ? 'night' : 'day';
+      try { localStorage.setItem('sw_theme', state.theme); } catch {}
+      applyTheme();
+    });
+
     document.getElementById('langToggleBtn')?.addEventListener('click', () => {
       state.lang = state.lang === 'en' ? 'th' : 'en';
       try { localStorage.setItem('sw_lang', state.lang); } catch {}
       applyLanguage();
+      if (window.STREET_FX_PLUS) window.STREET_FX_PLUS.runTextScramble(document.querySelector('.hero-name'));
     });
 
     // Search Debounce
@@ -1350,7 +1400,14 @@
       try {
         await navigator.clipboard.writeText('Ballyuyio@gmail.com');
         btn.textContent = state.lang === 'th' ? 'คัดลอกแล้ว!' : 'COPIED!';
-        setTimeout(() => { btn.textContent = t('copyBtn'); }, 1800);
+        btn.classList.add('is-copied');
+        if (window.STREET_FX_PLUS) {
+          window.STREET_FX_PLUS.showToast(state.lang === 'th' ? 'คัดลอกอีเมล Ballyuyio@gmail.com แล้ว!' : 'EMAIL COPIED: Ballyuyio@gmail.com');
+        }
+        setTimeout(() => {
+          btn.textContent = t('copyBtn');
+          btn.classList.remove('is-copied');
+        }, 1800);
       } catch {
         window.location.href = 'mailto:Ballyuyio@gmail.com';
       }

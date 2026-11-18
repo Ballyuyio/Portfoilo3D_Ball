@@ -10,8 +10,16 @@ const filesToCopy = [
   'data/projects.json',
   'js/app.js',
   'js/app.min.js',
+  'js/streetfx.js',
+  'js/streetfx.min.js',
+  'js/effects.js',
+  'js/effects.min.js',
+  'styles/tokens.css',
+  'styles/tokens.min.css',
   'styles/streetwall.css',
-  'styles/streetwall.min.css'
+  'styles/streetwall.min.css',
+  'styles/buttons.css',
+  'styles/buttons.min.css'
 ];
 
 filesToCopy.forEach(f => {

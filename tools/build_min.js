@@ -151,7 +151,9 @@ function minifyJsSafe(src) {
 }
 
 const cssTargets = [
-  ['styles/streetwall.css', 'styles/streetwall.min.css']
+  ['styles/tokens.css', 'styles/tokens.min.css'],
+  ['styles/streetwall.css', 'styles/streetwall.min.css'],
+  ['styles/buttons.css', 'styles/buttons.min.css']
 ];
 
 for (const [src, dest] of cssTargets) {
@@ -164,7 +166,8 @@ for (const [src, dest] of cssTargets) {
 
 const jsTargets = [
   ['js/app.js', 'js/app.min.js'],
-  ['js/streetfx.js', 'js/streetfx.min.js']
+  ['js/streetfx.js', 'js/streetfx.min.js'],
+  ['js/effects.js', 'js/effects.min.js']
 ];
 
 for (const [src, dest] of jsTargets) {

@@ -581,10 +581,11 @@ html:not([data-theme="day"]) .hero-alias {
 .hero-name {
   margin: 0;
   font-family: var(--font-graffiti);
-  font-size: clamp(1.85rem, 7.6vw, 5.1rem);
-  line-height: 1.02;
+  font-size: clamp(1.55rem, 4.1vw, 3.85rem);
+  line-height: 1.06;
   letter-spacing: 0.02em;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  word-break: keep-all;
   color: var(--ink-strong);
   text-shadow: 4px 4px 0 var(--pink), -2px -2px 0 rgba(31, 208, 232, 0.5);
 }
@@ -1998,13 +1999,16 @@ html:not([data-theme="day"]) .todo-tag {
 }
 
 @media (min-width: 480px) {
-  .brand-name {
-    display: inline;
-  }
   .hero-metrics {
     display: flex;
     flex-wrap: wrap;
     gap: 24px;
+  }
+}
+
+@media (min-width: 1320px) {
+  .brand-name {
+    display: inline;
   }
 }
 
