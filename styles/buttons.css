@@ -5,7 +5,8 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. LIVING ANIMATED GRAFFITI WALL BACKGROUND (Drifting Neon Spray Mist + 3D Grid)
+   1. LIVING ANIMATED GRAFFITI WALL BACKGROUND
+      (Neon Mist + Volumetric Light Beams + Cursor Spotlight + 3D Wireframe Canvas)
    -------------------------------------------------------------------------- */
 .wall-aurora {
   position: fixed;
@@ -18,59 +19,134 @@
 .wall-mist {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.16;
-  will-change: transform;
+  filter: blur(78px);
+  opacity: 0.24;
+  will-change: transform, opacity;
   transform: translate3d(0, 0, 0);
 }
 html[data-theme="day"] .wall-mist {
-  opacity: 0.13;
+  opacity: 0.16;
 }
 .wall-mist--pink {
-  width: 48vw;
-  height: 48vw;
-  max-width: 680px;
-  max-height: 680px;
-  top: -8%;
-  left: -6%;
-  background: radial-gradient(circle, var(--paint-primary) 0%, transparent 70%);
-  animation: swMistFloatA 22s ease-in-out infinite alternate;
+  width: 52vw;
+  height: 52vw;
+  max-width: 760px;
+  max-height: 760px;
+  top: -12%;
+  left: -8%;
+  background: radial-gradient(circle, var(--paint-primary) 0%, rgba(255, 31, 162, 0.35) 38%, transparent 72%);
+  animation: swMistFloatA 18s ease-in-out infinite alternate;
 }
 .wall-mist--cyan {
-  width: 44vw;
-  height: 44vw;
-  max-width: 620px;
-  max-height: 620px;
-  top: 28%;
-  right: -10%;
-  background: radial-gradient(circle, var(--paint-accent) 0%, transparent 70%);
-  animation: swMistFloatB 26s ease-in-out infinite alternate;
+  width: 48vw;
+  height: 48vw;
+  max-width: 700px;
+  max-height: 700px;
+  top: 20%;
+  right: -12%;
+  background: radial-gradient(circle, var(--paint-accent) 0%, rgba(31, 208, 232, 0.32) 38%, transparent 72%);
+  animation: swMistFloatB 22s ease-in-out infinite alternate;
 }
 .wall-mist--orange {
-  width: 42vw;
-  height: 42vw;
-  max-width: 580px;
-  max-height: 580px;
-  bottom: -10%;
-  left: 22%;
-  background: radial-gradient(circle, var(--paint-orange) 0%, transparent 70%);
-  animation: swMistFloatC 24s ease-in-out infinite alternate;
+  width: 46vw;
+  height: 46vw;
+  max-width: 640px;
+  max-height: 640px;
+  bottom: -14%;
+  left: 18%;
+  background: radial-gradient(circle, var(--paint-orange) 0%, rgba(255, 138, 31, 0.3) 38%, transparent 72%);
+  animation: swMistFloatC 20s ease-in-out infinite alternate;
+}
+.wall-mist--yellow {
+  width: 34vw;
+  height: 34vw;
+  max-width: 480px;
+  max-height: 480px;
+  top: 52%;
+  left: 44%;
+  opacity: 0.14;
+  background: radial-gradient(circle, var(--paint-yellow) 0%, transparent 70%);
+  animation: swMistFloatB 16s ease-in-out infinite alternate-reverse;
+}
+
+/* ลำแสงเฉียงสไตล์ไฟถนน/นีออนส่องพาดกำแพงคอนกรีต */
+.wall-beam {
+  position: absolute;
+  top: -30%;
+  height: 160%;
+  width: 24vw;
+  max-width: 340px;
+  filter: blur(42px);
+  opacity: 0.14;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+html[data-theme="day"] .wall-beam {
+  mix-blend-mode: multiply;
+  opacity: 0.08;
+}
+.wall-beam--a {
+  left: 12%;
+  background: linear-gradient(180deg, transparent 0%, var(--paint-primary) 42%, var(--paint-orange) 68%, transparent 100%);
+  animation: swBeamSweepA 15s ease-in-out infinite alternate;
+}
+.wall-beam--b {
+  right: 14%;
+  background: linear-gradient(180deg, transparent 0%, var(--paint-accent) 45%, var(--paint-yellow) 72%, transparent 100%);
+  animation: swBeamSweepB 19s ease-in-out infinite alternate;
+}
+
+/* แสงไฟส่องตามเมาส์บนผนังคอนกรีต (Interactive Neon Wall Torch) */
+.wall-spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 560px;
+  height: 560px;
+  margin-left: -280px;
+  margin-top: -280px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  background: radial-gradient(circle, rgba(31, 208, 232, 0.18) 0%, rgba(255, 31, 162, 0.11) 34%, transparent 68%);
+  mix-blend-mode: screen;
+  transform: translate3d(-600px, -600px, 0);
+  transition: opacity 320ms ease;
+  will-change: transform;
+}
+.wall-spotlight.is-active {
+  opacity: 1;
+}
+html[data-theme="day"] .wall-spotlight {
+  mix-blend-mode: multiply;
+  background: radial-gradient(circle, rgba(216, 13, 130, 0.11) 0%, rgba(0, 140, 163, 0.08) 38%, transparent 68%);
 }
 
 @keyframes swMistFloatA {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(7vw, 6vh, 0) scale(1.12); }
-  100% { transform: translate3d(2vw, 12vh, 0) scale(0.95); }
+  0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0.2; }
+  50%  { transform: translate3d(9vw, 7vh, 0) scale(1.16); opacity: 0.3; }
+  100% { transform: translate3d(3vw, 14vh, 0) scale(0.95); opacity: 0.22; }
 }
 @keyframes swMistFloatB {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(-8vw, -5vh, 0) scale(1.15); }
-  100% { transform: translate3d(-4vw, 8vh, 0) scale(0.92); }
+  0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0.2; }
+  50%  { transform: translate3d(-10vw, -6vh, 0) scale(1.18); opacity: 0.28; }
+  100% { transform: translate3d(-4vw, 10vh, 0) scale(0.94); opacity: 0.18; }
 }
 @keyframes swMistFloatC {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(6vw, -7vh, 0) scale(1.08); }
-  100% { transform: translate3d(-6vw, -2vh, 0) scale(0.96); }
+  0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0.18; }
+  50%  { transform: translate3d(8vw, -8vh, 0) scale(1.14); opacity: 0.28; }
+  100% { transform: translate3d(-7vw, -2vh, 0) scale(0.96); opacity: 0.2; }
+}
+@keyframes swBeamSweepA {
+  0%   { transform: translate3d(-8vw, 0, 0) rotate(22deg); opacity: 0.1; }
+  50%  { transform: translate3d(10vw, 0, 0) rotate(26deg); opacity: 0.2; }
+  100% { transform: translate3d(22vw, 0, 0) rotate(19deg); opacity: 0.11; }
+}
+@keyframes swBeamSweepB {
+  0%   { transform: translate3d(10vw, 0, 0) rotate(-24deg); opacity: 0.1; }
+  50%  { transform: translate3d(-12vw, 0, 0) rotate(-19deg); opacity: 0.19; }
+  100% { transform: translate3d(-22vw, 0, 0) rotate(-27deg); opacity: 0.11; }
 }
 
 /* Interactive 3D Wireframe / Floating Stencil Background Canvas */
@@ -163,27 +239,46 @@ html[data-theme="day"] .wall-mist {
 }
 
 /* --------------------------------------------------------------------------
-   4. SOFTWARE STICKER-TAPE MARQUEE (ระหว่าง Hero กับ Section 01)
+   4. SOFTWARE STICKER-TAPE MARQUEE WITH BRAND SVG LOGOS
    -------------------------------------------------------------------------- */
 .tape-marquee {
   position: relative;
   overflow: hidden;
   background: var(--paint-yellow);
   color: var(--ink-on-bright);
-  border-top: var(--border-w) solid var(--outline-ink);
-  border-bottom: var(--border-w) solid var(--outline-ink);
-  padding: 10px 0;
+  border-top: 3px solid var(--outline-ink);
+  border-bottom: 3px solid var(--outline-ink);
+  padding: 13px 0;
   margin: 8px 0 4px;
   transform: rotate(-0.55deg);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
   user-select: none;
   z-index: 3;
 }
+/* แถบลายเฉียงขอบเทปสไตล์ Street Caution Tape */
+.tape-marquee::before,
+.tape-marquee::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--outline-ink) 0 8px,
+    transparent 8px 16px
+  );
+  opacity: 0.45;
+  pointer-events: none;
+}
+.tape-marquee::before { top: 0; }
+.tape-marquee::after { bottom: 0; }
+
 .tape-marquee-track {
   display: flex;
   width: max-content;
   gap: 0;
-  animation: swMarquee 28s linear infinite;
+  animation: swMarquee 32s linear infinite;
   will-change: transform;
 }
 .tape-marquee:hover .tape-marquee-track {
@@ -192,24 +287,56 @@ html[data-theme="day"] .wall-mist {
 .tape-marquee-group {
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding-right: 24px;
-  font-family: var(--font-stencil);
-  font-size: 0.84rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  gap: 16px;
+  padding-right: 16px;
   white-space: nowrap;
+}
+.tape-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 13px 6px 8px;
+  background: var(--outline-ink);
+  color: #ffffff;
+  border: 2px solid var(--outline-ink);
+  box-shadow: 3px 3px 0 var(--chip-accent, var(--paint-primary));
+  font-family: var(--font-stencil);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform 180ms var(--ease-bounce), box-shadow 180ms var(--ease);
+}
+.tape-chip:hover {
+  transform: translate3d(-2px, -2px, 0) rotate(-1deg);
+  box-shadow: 5px 5px 0 var(--chip-accent, var(--paint-primary));
+}
+.tape-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--chip-accent, var(--paint-accent));
+  flex-shrink: 0;
+}
+.tape-logo svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 .tape-sep {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   background: var(--outline-ink);
-  color: var(--paint-primary);
-  font-size: 0.72rem;
+  color: var(--paint-yellow);
+  font-size: 0.65rem;
   transform: rotate(12deg);
+  opacity: 0.75;
 }
 @keyframes swMarquee {
   0%   { transform: translate3d(0, 0, 0); }
@@ -699,11 +826,13 @@ button:disabled,
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .wall-mist,
+  .wall-beam,
   .tape-marquee-track,
   .ba-drag-hint {
     animation: none !important;
   }
   .spray-reticle,
+  .wall-spotlight,
   #wallBgCanvas {
     display: none !important;
   }
@@ -713,12 +842,16 @@ button:disabled,
 }
 
 body.q-low .wall-aurora,
+body.q-low .wall-spotlight,
 body.q-low #wallBgCanvas,
 body.q-low .spray-reticle {
   display: none !important;
 }
 body.q-medium .wall-mist {
   filter: blur(50px);
-  opacity: 0.1;
+  opacity: 0.14;
+}
+body.q-medium .wall-beam {
+  display: none;
 }
 
