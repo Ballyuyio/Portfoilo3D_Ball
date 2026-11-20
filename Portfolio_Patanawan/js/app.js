@@ -1098,6 +1098,88 @@
   }
 
   // -------------------------------------------------------------------------
+  // DYNAMIC AMBIENT BACKDROP & COLOR SAMPLING SYSTEM
+  // -------------------------------------------------------------------------
+  let lbAmbientFlip = false;
+  let mvAmbientFlip = false;
+
+  function sampleArtworkAccent(imgEl, fallbackHex, onExtracted) {
+    if (!imgEl) {
+      if (fallbackHex && onExtracted) onExtracted(fallbackHex, fallbackHex);
+      return;
+    }
+    const trySample = () => {
+      try {
+        if (!imgEl.naturalWidth) return;
+        const c = document.createElement('canvas');
+        c.width = 8;
+        c.height = 8;
+        const ctx = c.getContext('2d', { willReadFrequently: true });
+        if (!ctx) return;
+        ctx.drawImage(imgEl, 0, 0, 8, 8);
+        const data = ctx.getImageData(0, 0, 8, 8).data;
+        let rTot = 0, gTot = 0, bTot = 0, count = 0;
+        let maxSat = 0, satColor = null;
+
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i], g = data[i + 1], b = data[i + 2];
+          const lum = (0.299 * r + 0.587 * g + 0.114 * b);
+          if (lum > 20 && lum < 235) {
+            rTot += r; gTot += g; bTot += b; count++;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            const sat = max === 0 ? 0 : (max - min) / max;
+            if (sat > maxSat) {
+              maxSat = sat;
+              satColor = `rgb(${r}, ${g}, ${b})`;
+            }
+          }
+        }
+        if (count > 0 && onExtracted) {
+          const avgColor = `rgb(${Math.round(rTot / count)}, ${Math.round(gTot / count)}, ${Math.round(bTot / count)})`;
+          onExtracted(satColor || avgColor, avgColor);
+        }
+      } catch {
+        if (fallbackHex && onExtracted) onExtracted(fallbackHex, fallbackHex);
+      }
+    };
+
+    if (imgEl.complete && imgEl.naturalWidth) {
+      trySample();
+    } else {
+      imgEl.addEventListener('load', trySample, { once: true });
+    }
+  }
+
+  function applyModalAmbient(modalEl, prefix, bgUrl, baseAccent, onReadyImg) {
+    if (!modalEl) return;
+    const isLb = prefix === 'lb';
+    const flip = isLb ? (lbAmbientFlip = !lbAmbientFlip) : (mvAmbientFlip = !mvAmbientFlip);
+    const layerA = document.getElementById(`${prefix}AmbientA`);
+    const layerB = document.getElementById(`${prefix}AmbientB`);
+    const activeLayer = flip ? layerA : layerB;
+    const inactiveLayer = flip ? layerB : layerA;
+
+    const primary = baseAccent || '#1FD0E8';
+    modalEl.style.setProperty('--lb-accent-1', primary);
+    modalEl.style.setProperty('--lb-accent-2', primary === '#1FD0E8' ? '#FF1FA2' : '#1FD0E8');
+    modalEl.style.setProperty('--lb-accent-glow', primary);
+
+    if (bgUrl && activeLayer) {
+      activeLayer.style.backgroundImage = `url('${bgUrl}')`;
+      activeLayer.classList.add('is-active');
+      if (inactiveLayer) inactiveLayer.classList.remove('is-active');
+    }
+
+    if (onReadyImg) {
+      sampleArtworkAccent(onReadyImg, primary, (vibrant, avg) => {
+        modalEl.style.setProperty('--lb-accent-1', vibrant);
+        modalEl.style.setProperty('--lb-accent-2', avg);
+        modalEl.style.setProperty('--lb-accent-glow', vibrant);
+      });
+    }
+  }
+
+  // -------------------------------------------------------------------------
   // LIGHTBOX MODAL
   // -------------------------------------------------------------------------
   function openLightbox(items, idx) {
@@ -1114,14 +1196,20 @@
   function updateLightboxFrame() {
     const item = state.lightboxList[state.lightboxIdx];
     if (!item) return;
+    const modal = document.getElementById('lightboxModal');
     const img = document.getElementById('lbImg');
     const title = document.getElementById('lbTitle');
     const left = document.getElementById('lbCaptionLeft');
     const right = document.getElementById('lbCaptionRight');
     const dosBtn = document.getElementById('lbDossierBtn');
+    const zoomLabel = document.getElementById('lbZoomLabel');
+    const hudRes = document.getElementById('lbHudRes');
+    const hudTech = document.getElementById('lbHudTech');
+    const hudFormat = document.getElementById('lbHudFormat');
 
     if (img) {
       img.classList.remove('is-zoomed');
+      if (zoomLabel) zoomLabel.textContent = 'ZOOM 1.65x';
       const preferred = toWebp(item.src);
       img.onerror = () => {
         img.onerror = null;
@@ -1130,11 +1218,21 @@
       img.src = preferred || item.src;
       img.alt = item.alt || item.label || '';
     }
+
+    const proj = item.project ? PROJECT_MAP.get(item.project) : null;
+    const accent = item.accent || (proj && proj.accent) || '#1FD0E8';
+    const ambientBg = to400Webp(item.thumb || '') || toWebp(item.thumb || '') || item.thumb || item.src || '';
+    applyModalAmbient(modal, 'lb', ambientBg, accent, img);
+
+    if (hudRes) hudRes.textContent = `${item.width || '1920'} × ${item.height || '1080'}`;
+    if (hudTech) hudTech.textContent = (proj && proj.software && proj.software[0]) ? `${proj.software[0].toUpperCase()} // LOOKDEV` : 'PBR // LOOKDEV';
+    if (hudFormat) hudFormat.textContent = item.originalFile ? item.originalFile.split('.').pop().toUpperCase() : 'RENDER';
+
     if (title) title.textContent = localizedText(item.label, item.labelTh);
     if (left) left.textContent = `${state.lightboxIdx + 1} / ${state.lightboxList.length} — ${localizedText(item.projectTitle, item.projectTitleTh) || ''}`;
-    if (right) right.textContent = `${item.width || '-'} x ${item.height || '-'} | src: ${item.originalFile || ''}`;
+    if (right) right.textContent = `${item.width || '-'} × ${item.height || '-'} | src: ${item.originalFile || ''}`;
     if (dosBtn) {
-      dosBtn.style.display = item.project ? 'inline-block' : 'none';
+      dosBtn.style.display = item.project ? 'inline-flex' : 'none';
       dosBtn.onclick = () => {
         closeLightbox();
         window.location.hash = `#/work/${item.project}`;
@@ -1144,7 +1242,15 @@
 
   function closeLightbox() {
     const modal = document.getElementById('lightboxModal');
-    if (modal) modal.classList.remove('is-open');
+    if (modal) {
+      modal.classList.remove('is-open');
+      const img = document.getElementById('lbImg');
+      if (img) img.classList.remove('is-zoomed');
+      const zoomLabel = document.getElementById('lbZoomLabel');
+      if (zoomLabel) zoomLabel.textContent = 'ZOOM 1.65x';
+      document.getElementById('lbAmbientA')?.classList.remove('is-active');
+      document.getElementById('lbAmbientB')?.classList.remove('is-active');
+    }
     document.body.style.overflow = '';
     if (window.STREET_FX) window.STREET_FX.resumeScroll();
   }
@@ -1167,10 +1273,16 @@
     const dosBtn = document.getElementById('mvDossierBtn');
     const spBtn = document.getElementById('mvSpeedBtn');
     const lpBtn = document.getElementById('mvLoopBtn');
+    const hudFps = document.getElementById('mvHudFps');
+    const hudRes = document.getElementById('mvHudRes');
+    const fallback = document.getElementById('mvErrorFallback');
 
+    if (fallback) fallback.style.display = 'none';
     if (title) title.textContent = localizedText(clip.label, clip.labelTh);
     if (left) left.textContent = `${localizedText(clip.projectTitle, clip.projectTitleTh)} • ${formatDuration(clip.durationSec)} • ${clip.sizeMB} MB`;
-    if (right) right.textContent = `${clip.width} x ${clip.height} Native H.264 • src: ${clip.originalFile}`;
+    if (right) right.textContent = `${clip.width} × ${clip.height} Native H.264 • src: ${clip.originalFile}`;
+    if (hudFps) hudFps.textContent = `${formatDuration(clip.durationSec)} • ${clip.sizeMB} MB`;
+    if (hudRes) hudRes.textContent = `${clip.width} × ${clip.height} H.264`;
     if (spBtn) spBtn.textContent = 'SPEED: 1.0x';
     if (lpBtn) lpBtn.textContent = 'LOOP: ON';
     if (dosBtn) {
@@ -1180,11 +1292,32 @@
       };
     }
 
+    const proj = clip.project ? PROJECT_MAP.get(clip.project) : null;
+    const accent = clip.accent || (proj && proj.accent) || '#FF1FA2';
+    const posterBg = toWebp(clip.poster) || clip.poster || '';
+    applyModalAmbient(modal, 'mv', posterBg, accent, null);
+
     if (video) {
       video.poster = toWebp(clip.poster);
       video.src = clip.src;
       video.loop = true;
       video.playbackRate = 1.0;
+
+      video.onerror = () => {
+        if (fallback) {
+          fallback.innerHTML = `
+            <div style="font-weight:800;color:var(--pink);font-size:1rem;margin-bottom:6px;">[ VIDEO PLAYBACK NOTICE ]</div>
+            <p style="font-size:0.82rem;color:#c0c2cf;max-width:420px;line-height:1.5;margin:0 0 12px 0;">
+              ${state.lang === 'th' ? 'หากเบราว์เซอร์ไม่สามารถเล่นไฟล์ H.264 แบบสตรีมมิ่งได้โดยตรง สามารถคลิกดาวน์โหลดหรือเปิดดูวิดีโอต้นฉบับได้ที่ปุ่มด้านล่าง' : 'If the browser cannot decode this H.264 stream inline, you can view or download the original file directly below.'}
+            </p>
+            <a href="${esc(clip.src)}" target="_blank" download class="modal-btn" style="border-color:var(--yellow);color:var(--yellow);">
+              DOWNLOAD / OPEN MP4 DIRECTLY (${esc(clip.sizeMB)} MB)
+            </a>
+          `;
+          fallback.style.display = 'flex';
+        }
+      };
+
       if (modal) modal.classList.add('is-open');
       document.body.style.overflow = 'hidden';
       if (window.STREET_FX) window.STREET_FX.pauseScroll();
@@ -1200,7 +1333,11 @@
       video.removeAttribute('src');
       video.load();
     }
-    if (modal) modal.classList.remove('is-open');
+    if (modal) {
+      modal.classList.remove('is-open');
+      document.getElementById('mvAmbientA')?.classList.remove('is-active');
+      document.getElementById('mvAmbientB')?.classList.remove('is-active');
+    }
     document.body.style.overflow = '';
     if (window.STREET_FX) window.STREET_FX.resumeScroll();
     state.activeMotionClip = null;
@@ -1353,7 +1490,12 @@
       updateLightboxFrame();
     });
     document.getElementById('lbZoomBtn')?.addEventListener('click', () => {
-      document.getElementById('lbImg')?.classList.toggle('is-zoomed');
+      const img = document.getElementById('lbImg');
+      const label = document.getElementById('lbZoomLabel');
+      if (img) {
+        const isZoomed = img.classList.toggle('is-zoomed');
+        if (label) label.textContent = isZoomed ? 'RESET ZOOM' : 'ZOOM 1.65x';
+      }
     });
     document.getElementById('lightboxModal')?.addEventListener('click', (e) => {
       if (e.target.id === 'lightboxModal' || e.target.id === 'lbStage') closeLightbox();
@@ -1362,7 +1504,7 @@
     // Motion Modal Buttons
     document.getElementById('mvCloseBtn')?.addEventListener('click', closeMotionModal);
     document.getElementById('motionModal')?.addEventListener('click', (e) => {
-      if (e.target.id === 'motionModal') closeMotionModal();
+      if (e.target.id === 'motionModal' || e.target.id === 'mvStage') closeMotionModal();
     });
     document.getElementById('mvSpeedBtn')?.addEventListener('click', (e) => {
       speedIdx = (speedIdx + 1) % SPEEDS.length;
@@ -1378,19 +1520,33 @@
       e.currentTarget.textContent = `LOOP: ${v.loop ? 'ON' : 'OFF'}`;
     });
 
-    // Escape & Arrow Key Controls
+    // Escape, Arrow Keys & Shortcuts
     window.addEventListener('keydown', (e) => {
       const lbOpen = document.getElementById('lightboxModal')?.classList.contains('is-open');
       const mvOpen = document.getElementById('motionModal')?.classList.contains('is-open');
       if (e.key === 'Escape') {
         if (lbOpen) closeLightbox();
         if (mvOpen) closeMotionModal();
-      } else if (lbOpen && e.key === 'ArrowLeft') {
+      } else if (lbOpen && (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A')) {
         state.lightboxIdx = (state.lightboxIdx - 1 + state.lightboxList.length) % state.lightboxList.length;
         updateLightboxFrame();
-      } else if (lbOpen && e.key === 'ArrowRight') {
+      } else if (lbOpen && (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D')) {
         state.lightboxIdx = (state.lightboxIdx + 1) % state.lightboxList.length;
         updateLightboxFrame();
+      } else if (lbOpen && (e.key === 'z' || e.key === 'Z')) {
+        const img = document.getElementById('lbImg');
+        const label = document.getElementById('lbZoomLabel');
+        if (img) {
+          const isZoomed = img.classList.toggle('is-zoomed');
+          if (label) label.textContent = isZoomed ? 'RESET ZOOM' : 'ZOOM 1.65x';
+        }
+      } else if (mvOpen && e.key === ' ') {
+        e.preventDefault();
+        const v = document.getElementById('mvVideo');
+        if (v) {
+          if (v.paused) v.play().catch(() => {});
+          else v.pause();
+        }
       }
     });
 
