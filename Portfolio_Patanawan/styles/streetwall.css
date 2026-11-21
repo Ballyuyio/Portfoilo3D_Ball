@@ -705,6 +705,9 @@ html:not([data-theme="day"]) .hero-alias {
   height: 100%;
   object-fit: cover;
   cursor: pointer;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
 }
 .hero-stage-caption {
   display: flex;

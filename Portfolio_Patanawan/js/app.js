@@ -298,6 +298,7 @@
 
   function renderThumbPicture(thumbPath, fallbackSrc, alt, width, height, sizes, loading, extraAttrs) {
     const tSrc = thumbPath || fallbackSrc || '';
+    const fSrc = fallbackSrc || thumbPath || '';
     const w800 = toWebp(tSrc);
     const w400 = to400Webp(tSrc);
     const srcsetVal = (w400 && w400 !== tSrc && w800 && w800 !== tSrc)
@@ -310,7 +311,8 @@
     const hAttr = height ? ` height="${esc(height)}"` : '';
     const lAttr = loading ? ` loading="${esc(loading)}"` : '';
     const xAttr = extraAttrs ? ` ${extraAttrs}` : '';
-    return `<picture>${sourceTag}<img src="${esc(tSrc)}" alt="${esc(alt || '')}"${wAttr}${hAttr}${lAttr} decoding="async"${xAttr} /></picture>`;
+    const errAttr = ` onerror="this.onerror=null;var p=this.closest('picture');if(p){var s=p.querySelectorAll('source');s.forEach(function(el){el.remove();});}if(this.src!=='${esc(fSrc)}')this.src='${esc(fSrc)}';"`;
+    return `<picture>${sourceTag}<img src="${esc(tSrc)}" alt="${esc(alt || '')}"${wAttr}${hAttr}${lAttr} decoding="async"${errAttr}${xAttr} /></picture>`;
   }
 
   // -------------------------------------------------------------------------
@@ -386,7 +388,17 @@
       img.alt = item.cover.alt || item.project.title;
       if (item.cover.width) img.width = item.cover.width;
       if (item.cover.height) img.height = item.cover.height;
-      if (item.cover.lqip) img.style.backgroundImage = `url("${item.cover.lqip}")`;
+      if (item.cover.lqip) {
+        img.style.backgroundImage = `url("${item.cover.lqip}")`;
+        img.style.backgroundSize = 'cover';
+        img.style.backgroundRepeat = 'no-repeat';
+        img.style.backgroundPosition = 'center';
+      }
+      img.onerror = () => {
+        img.onerror = null;
+        if (webpSource) webpSource.removeAttribute('srcset');
+        img.src = item.cover.src;
+      };
     }
     if (titleEl) titleEl.textContent = localizedText(item.project.title, item.project.titleTh);
     if (metaEl) metaEl.textContent = `${item.project.software.slice(0, 2).join(' • ')} • ${item.project.polycount}`;

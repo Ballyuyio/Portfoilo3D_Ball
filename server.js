@@ -1,8 +1,8 @@
 /**
  * STREET WALL — Zero-Dependency Local Static Server
  * Supports HTTP Range streaming for H.264 MP4 gameplay & turntable reels,
- * handles URI-encoded filenames safely, and works without COEP header traps
- * so Google Fonts and optional CDNs load cleanly on localhost.
+ * auto-fallbacks for WebP/PNG/JPEG formats across root and subfolder environments,
+ * and works cleanly on localhost without COEP header traps.
  */
 const http = require('http');
 const fs = require('fs');
@@ -31,6 +31,49 @@ const MIME_TYPES = {
   '.xml': 'application/xml; charset=UTF-8'
 };
 
+function resolveAssetPath(rootPath, reqPath) {
+  const direct = path.resolve(rootPath, '.' + reqPath);
+  try {
+    if (fs.existsSync(direct) && fs.statSync(direct).isFile()) {
+      return direct;
+    }
+  } catch {}
+
+  // Check parent root directory if running from subfolder
+  const parentDirect = path.resolve(rootPath, '..', '.' + reqPath);
+  try {
+    if (fs.existsSync(parentDirect) && fs.statSync(parentDirect).isFile()) {
+      return parentDirect;
+    }
+  } catch {}
+
+  // WebP to PNG/JPG auto-fallback (in case browser requests .webp but only png/jpg exists)
+  if (reqPath.endsWith('.webp')) {
+    const candidates = [
+      reqPath.replace(/-400\.webp$/i, '.webp'),
+      reqPath.replace(/-400\.webp$/i, '-thumb.jpg'),
+      reqPath.replace(/-400\.webp$/i, '-thumb.png'),
+      reqPath.replace(/-thumb\.webp$/i, '-thumb.jpg'),
+      reqPath.replace(/-thumb\.webp$/i, '-thumb.png'),
+      reqPath.replace(/\.webp$/i, '.png'),
+      reqPath.replace(/\.webp$/i, '.jpg'),
+      reqPath.replace(/\.webp$/i, '.jpeg')
+    ];
+    for (const c of candidates) {
+      try {
+        const p = path.resolve(rootPath, '.' + c);
+        if (fs.existsSync(p) && fs.statSync(p).isFile()) return p;
+      } catch {}
+      try {
+        const pp = path.resolve(rootPath, '..', '.' + c);
+        if (fs.existsSync(pp) && fs.statSync(pp).isFile()) return pp;
+      } catch {}
+    }
+  }
+
+  return null;
+}
+
 const server = http.createServer((req, res) => {
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     res.writeHead(405, { 'Content-Type': 'text/plain; charset=UTF-8' });
@@ -49,17 +92,10 @@ const server = http.createServer((req, res) => {
 
   if (rawPath === '/' || rawPath === '') rawPath = '/index.html';
 
-  const resolvedPath = path.resolve(ROOT, '.' + rawPath);
-  if (resolvedPath !== ROOT && !resolvedPath.startsWith(ROOT + path.sep)) {
-    res.writeHead(403, { 'Content-Type': 'text/plain; charset=UTF-8' });
-    res.end('Forbidden');
-    return;
-  }
-
-  const relFromRoot = path.relative(ROOT, resolvedPath).split(path.sep).join('/');
-  if (/^(WorkingModelmage|scripts)(\/|$)/i.test(relFromRoot)) {
-    res.writeHead(403, { 'Content-Type': 'text/plain; charset=UTF-8' });
-    res.end('Forbidden');
+  const resolvedPath = resolveAssetPath(ROOT, rawPath);
+  if (!resolvedPath) {
+    res.writeHead(404, { 'Content-Type': 'text/html; charset=UTF-8' });
+    res.end('<!doctype html><title>404</title><h1>404 Not Found</h1><p><a href="/">Back to Street Wall</a></p>');
     return;
   }
 

@@ -19,7 +19,8 @@ const filesToCopy = [
   'styles/streetwall.css',
   'styles/streetwall.min.css',
   'styles/buttons.css',
-  'styles/buttons.min.css'
+  'styles/buttons.min.css',
+  'server.js'
 ];
 
 filesToCopy.forEach(f => {
